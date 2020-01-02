@@ -121,6 +121,12 @@
           }
         }
       }
-    }},
-  "defaultProject": "tablet-attendance"
+    }
+  },
+  "defaultProject": "tablet-attendance",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

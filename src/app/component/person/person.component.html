@@ -1,13 +1,13 @@
-<div class="container">
-  <div class='user-header'>
-    <div class="row" >
-        <img src="../../../assets/awiros_logo_reg.svg" alt="Avatar">
+<div class="person-container">
+  <div class="row">
+    <div class="col-md-12 welcome">
+      <h3>Welcome {{empRecord.name}}</h3>
     </div>
-    <div class="row">
-        <h2>Welcome {{empRecord.name}}</h2>
-    </div>
-    
-    <div class="row ">
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12 user">
       <div class="avatar coulmn">
         <img src="https://www.tutorialrepublic.com/examples/images/avatar/1.jpg" alt="Avatar"> 
       </div>
@@ -15,21 +15,30 @@
         <div >Time of Entrance: </div> <span> {{empRecord.inTime | date: 'yyyy/MM/dd h:mm:ss a'}} </span>
         <div class="second">Entrance From:</div> <span> {{empRecord.location}} </span>
       </div>
-    </div>  
+    </div>    
+  </div>  
 
-    <div class="row coulmn">
-      <div class="radio d-flex">
-        <div class="flex-grow-1">
-          <input type="radio" name="radio"  value="true" checked> Is this {{empRecord.name}} ?
+  <div class="row">
+    <div class="col-md-12">
+        <div class="radio d-flex align-items-center">
+          <div class="col-md-6 p-0">
+            <label>
+              <input type="radio" name="radio" value="true" checked> Is this {{empRecord.name}} ?          
+            </label>
+          </div>
+          <div>
+            <button type="submit" class="btn btn-secondary">Verify</button>
+          </div>
         </div>
-        <div>
-          <button type="submit" class="btn btn-secondary">Verify</button>
-        </div>
-      </div>
+    </div>    
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
       <div class="radio">
-        <div>
+        <label>
           <input type="radio" name="radio"> Not Arvind kausik?
-        </div>
+        </label>
         <form>
             <div class="form-group ">
               <div class="col-6">
@@ -43,8 +52,6 @@
         </form>
       </div>
     </div>
-      
-    
   </div>
   <app-live-stream></app-live-stream>
 </div>
