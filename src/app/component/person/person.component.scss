@@ -1,0 +1,52 @@
+.person-container {
+  background-color: #fff;
+  padding: 10px 30px;
+  color: #4d4e4f;
+
+  .row {
+    padding-bottom: 15px;
+  }
+
+  .welcome {
+    h3 {
+      margin: 0;
+    }
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+
+    .avatar img{
+      width: 120px;
+      height: 120px;
+      margin-right: 20px;
+    }
+  }
+
+  .radio {
+
+    input[type="radio"] {
+      vertical-align: middle;
+    }
+
+    label {
+      margin: 0;
+    }
+    
+  }
+  
+  .coulmn {    
+    flex-direction: column;
+    justify-content: center;
+  }
+  .second{
+    padding-top: 15px;
+  }
+
+  .radio .form-group{
+    display: flex;
+    flex-direction: row;
+  }
+}
