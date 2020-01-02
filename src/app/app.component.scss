@@ -6,4 +6,10 @@
     margin-bottom: 20px;
     background: #fff;
 	}
+
+	.app-container {
+		> * {
+			margin-bottom: 20px;
+		}
+	}
 }

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { PersonComponent } from './component/person/person.component';
 import { LiveStreamComponent } from './component/live-stream/live-stream.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

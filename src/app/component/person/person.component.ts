@@ -10,13 +10,20 @@ import { PersonDataService } from '../../services/person-data.service';
 })
 export class PersonComponent implements OnInit {
 
-  public empRecord ;
+  public newPersonCame;
+  public empRecord = {};
+  public person = {
+    name: "",
+    isRecognized: true,
+  };
 
   constructor(private apiService: ApiService, private personData: PersonDataService) { }
 
   ngOnInit() {
     this.sendMessage();
     this.checkNewPresentEmp();
+
+    this.initForm();
 
     this.apiService.getNewEmpDetails().subscribe((res) => {
       this.empRecord = this.extractDataForNewEmp(res);
@@ -31,6 +38,7 @@ export class PersonComponent implements OnInit {
 
   private checkNewPresentEmp() {
     this.personData.messages.subscribe(data => {
+      this.newPersonCame = true;
       console.log('data', data);
     });
   }
@@ -50,6 +58,26 @@ export class PersonComponent implements OnInit {
 
     row.id = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_id;
     return row;
+  }
+
+  public onVerify() {
+    console.log("Verified");
+    console.log(this.person);
+    this.initForm();
+  }
+
+  public onSubmit() {
+    console.log("Submitted");
+    console.log(this.person);
+    this.initForm();
+  }
+
+  public initForm() {
+      this.person = {
+        name: "",
+        isRecognized: true
+      };
+      this.newPersonCame = false;
   }
 
 }

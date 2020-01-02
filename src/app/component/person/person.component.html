@@ -1,57 +1,60 @@
 <div class="person-container">
-  <div class="row">
-    <div class="col-md-12 welcome">
-      <h3>Welcome {{empRecord.name}}</h3>
-    </div>
-
-  </div>
-  
-  <div class="row">
-    <div class="col-md-12 user">
-      <div class="avatar coulmn">
-        <img src="https://www.tutorialrepublic.com/examples/images/avatar/1.jpg" alt="Avatar"> 
-      </div>
-      <div class="coulmn">
-        <div >Time of Entrance: </div> <span> {{empRecord.inTime | date: 'yyyy/MM/dd h:mm:ss a'}} </span>
-        <div class="second">Entrance From:</div> <span> {{empRecord.location}} </span>
-      </div>
-    </div>    
-  </div>  
-
-  <div class="row">
-    <div class="col-md-12">
-        <div class="radio d-flex align-items-center">
-          <div class="col-md-6 p-0">
-            <label>
-              <input type="radio" name="radio" value="true" checked> Is this {{empRecord.name}} ?          
-            </label>
+  <div class="form-container" *ngIf="newPersonCame">
+      <div class="row">
+          <div class="col-md-12 welcome">
+            <h3>Welcome {{empRecord.name}}</h3>
           </div>
-          <div>
-            <button type="submit" class="btn btn-secondary">Verify</button>
-          </div>
+      
         </div>
-    </div>    
-  </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="radio">
-        <label>
-          <input type="radio" name="radio"> Not Arvind kausik?
-        </label>
-        <form>
-            <div class="form-group ">
-              <div class="col-6">
-                  <input type="email" class="form-control"  placeholder="Enter your name">
-              </div>
-              <div>
-                  <button type="submit" class="btn btn-secondary" >Submit</button>
-              </div>
+        
+        <div class="row">
+          <div class="col-md-12 user">
+            <div class="avatar coulmn">
+              <img src="https://www.tutorialrepublic.com/examples/images/avatar/1.jpg" alt="Avatar"> 
             </div>
-            
-        </form>
-      </div>
-    </div>
+            <div class="coulmn">
+              <div >Time of Entrance: </div> <span> {{empRecord.inTime | date: 'yyyy/MM/dd h:mm:ss a'}} </span>
+              <div class="second">Entrance From:</div> <span> {{empRecord.location}} </span>
+            </div>
+          </div>    
+        </div>
+      
+        <div class="row">
+            <form role="form" name='form' #personForm="ngForm">
+          
+              <div class="col-md-12">
+                  <div class="radio d-flex align-items-center">
+                    <div class="col-md-6 p-0">
+                      <label>
+                        <input type="radio" name="recognized" [(ngModel)]="person.isRecognized" (click)="person.name = ''" [value]="true" checked> Is this {{empRecord.name}} ?          
+                      </label>
+                    </div>
+                    <div>
+                      <button type="button" (click)="onVerify()" [disabled]="!person.isRecognized" class="btn btn-secondary">Verify</button>
+                    </div>
+                  </div>
+              </div>
+      
+              <div class="col-md-12">
+                <div class="radio">
+                  <label>
+                    <input type="radio" [(ngModel)]="person.isRecognized" [value]="false" name="not_recognized"> Not Arvind kausik?
+                  </label>        
+                    <div class="form-group">
+                      <div class="col-6">
+                          <input type="text" #name="ngModel" [(ngModel)]="person.name" class="form-control" name="name" [disabled]="person.isRecognized" placeholder="Enter your name">
+                      </div>
+                      <div>
+                          <button (click)="onSubmit()" class="btn btn-secondary" [disabled]="person.isRecognized">Submit</button>
+                      </div>
+                    </div>
+                </div>
+              </div>
+      
+            </form>
+        </div>      
   </div>
-  <app-live-stream></app-live-stream>
+  <div class="waiting-container" *ngIf="!newPersonCame">
+    <h3>Waiting for new person...</h3>
+  </div>
 </div>
