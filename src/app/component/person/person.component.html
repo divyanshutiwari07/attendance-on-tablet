@@ -1,0 +1,50 @@
+<div class="container">
+  <div class='user-header'>
+    <div class="row" >
+        <img src="../../../assets/awiros_logo_reg.svg" alt="Avatar">
+    </div>
+    <div class="row">
+        <h2>Welcome {{empRecord.name}}</h2>
+    </div>
+    
+    <div class="row ">
+      <div class="avatar coulmn">
+        <img src="https://www.tutorialrepublic.com/examples/images/avatar/1.jpg" alt="Avatar"> 
+      </div>
+      <div class="coulmn">
+        <div >Time of Entrance: </div> <span> {{empRecord.inTime | date: 'yyyy/MM/dd h:mm:ss a'}} </span>
+        <div class="second">Entrance From:</div> <span> {{empRecord.location}} </span>
+      </div>
+    </div>  
+
+    <div class="row coulmn">
+      <div class="radio d-flex">
+        <div class="flex-grow-1">
+          <input type="radio" name="radio"  value="true" checked> Is this {{empRecord.name}} ?
+        </div>
+        <div>
+          <button type="submit" class="btn btn-secondary">Verify</button>
+        </div>
+      </div>
+      <div class="radio">
+        <div>
+          <input type="radio" name="radio"> Not Arvind kausik?
+        </div>
+        <form>
+            <div class="form-group ">
+              <div class="col-6">
+                  <input type="email" class="form-control"  placeholder="Enter your name">
+              </div>
+              <div>
+                  <button type="submit" class="btn btn-secondary" >Submit</button>
+              </div>
+            </div>
+            
+        </form>
+      </div>
+    </div>
+      
+    
+  </div>
+  <app-live-stream></app-live-stream>
+</div>
