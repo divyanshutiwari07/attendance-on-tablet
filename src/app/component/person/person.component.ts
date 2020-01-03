@@ -11,9 +11,9 @@ import { PersonDataService } from '../../services/person-data.service';
 export class PersonComponent implements OnInit {
 
   public newPersonCame;
-  public empRecord = {};
+  public empRecord: any = {};
   public person = {
-    name: "",
+    name: '',
     isRecognized: true,
   };
 
@@ -61,20 +61,20 @@ export class PersonComponent implements OnInit {
   }
 
   public onVerify() {
-    console.log("Verified");
+    console.log('Verified');
     console.log(this.person);
     this.initForm();
   }
 
   public onSubmit() {
-    console.log("Submitted");
+    console.log('Submitted');
     console.log(this.person);
     this.initForm();
   }
 
   public initForm() {
       this.person = {
-        name: "",
+        name: '',
         isRecognized: true
       };
       this.newPersonCame = false;
