@@ -24,7 +24,7 @@
           
               <div class="col-md-12">
                   <div class="radio d-flex align-items-center">
-                    <div class="col-md-6 p-0">
+                    <div class="col-sm-6 p-0">
                       <label>
                         <input type="radio" name="recognized" [(ngModel)]="person.isRecognized" (click)="person.name = ''" [value]="true" checked> Is this {{empRecord.name}} ?          
                       </label>
@@ -37,11 +37,13 @@
       
               <div class="col-md-12">
                 <div class="radio">
-                  <label>
-                    <input type="radio" [(ngModel)]="person.isRecognized" [value]="false" name="not_recognized"> Not Arvind kausik?
-                  </label>        
+                  <div class="col-sm-6 p-0">
+                    <label>
+                        <input type="radio" [(ngModel)]="person.isRecognized" [value]="false" name="not_recognized"> Not {{empRecord.name}}?
+                    </label>
+                  </div>  
                     <div class="form-group">
-                      <div class="col-6">
+                      <div class="col-sm-6">
                           <input type="text" #name="ngModel" [(ngModel)]="person.name" class="form-control" name="name" [disabled]="person.isRecognized" placeholder="Enter your name">
                       </div>
                       <div>

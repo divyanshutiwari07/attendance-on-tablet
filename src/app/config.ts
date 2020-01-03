@@ -14,7 +14,7 @@ export const SOCKET_EVENTS = {
 
 const configs = {
   ON_PREMISE: {
-    TEST : 'http://localhost:3000/new_emp'    
+    TEST : 'http://localhost:3000/new_emp'
   },
   LOCALHOST: {
     TEST : 'http://localhost:3000/new_emp',
