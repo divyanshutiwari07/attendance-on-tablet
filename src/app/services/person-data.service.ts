@@ -18,8 +18,8 @@ export class PersonDataService {
       }));
    }
 
-  sendMsg(msg) {
-    console.log('sendmsg');
+  initConnection(msg) {
+    console.log('initConnection');
     this.messages.next(msg);
   }
 }

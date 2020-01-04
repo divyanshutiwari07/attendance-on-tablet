@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { isNullOrUndefined } from 'util';
 import { ApiService } from '../../services/api.service';
 import { PersonDataService } from '../../services/person-data.service';
-
+import PresentEmployeeListModel from '../../models/present-employee-list-model';
 
 @Component({
   selector: 'app-person',
@@ -16,30 +17,55 @@ export class PersonComponent implements OnInit {
     name: '',
     isRecognized: true,
   };
+  private startTime: number;
+  private endTime: number;
+  public empListObj: PresentEmployeeListModel;
+  public empIds;
+  public empQueue = [];
 
   constructor(private apiService: ApiService, private personData: PersonDataService) { }
 
   ngOnInit() {
-    this.sendMessage();
-    this.checkNewPresentEmp();
-
+    this.startSocketConnection();
     this.initForm();
 
-    this.apiService.getNewEmpDetails().subscribe((res) => {
-      this.empRecord = this.extractDataForNewEmp(res);
-      console.log(this.empRecord);
-     });
+    this.startTime = new Date().setHours(0, 0, 0, 0);
+    this.endTime = new Date().setHours(23, 59, 59, 999);
+
+    this.apiService.getPresentEmployeesForDate({'start_time': this.startTime, 'end_time': this.endTime })
+    .subscribe(
+      response => {
+        this.empListObj = PresentEmployeeListModel.ModelMap(response);
+        this.empIds = this.empListObj.presentEmpIds;
+        console.log("emp ids", this.empIds);
+        // console.log("emp Ids", empListObj.presentEmpIds);
+
+        this.checkNewPresentEmp();
+      }
+    );
   }
 
-  sendMessage() {
-    console.log('sendms today');
-    this.personData.sendMsg('Access Real Time Data from server');
+  startSocketConnection() {
+    console.log('startSocketConnection');
+    this.personData.initConnection('Access Real Time Data from server');
   }
 
   private checkNewPresentEmp() {
     this.personData.messages.subscribe(data => {
-      this.newPersonCame = true;
-      console.log('data', data);
+      console.log(data);
+      const newPerson = this.extractDataForNewEmp(data);
+    
+      const index = this.empQueue.findIndex((e) => e.id === newPerson.id);
+
+      if (index === -1) {
+          this.empQueue.push(newPerson);
+      } else {
+          this.empQueue[index] = newPerson;
+      }
+      console.log("Queue Status", this.empQueue);
+      if( !Object.keys(this.empRecord).length ) {
+        this.showNextPersonInTheQueue();
+      }
     });
   }
 
@@ -64,12 +90,30 @@ export class PersonComponent implements OnInit {
     console.log('Verified');
     console.log(this.person);
     this.initForm();
+    this.showNextPersonInTheQueue();
   }
 
   public onSubmit() {
     console.log('Submitted');
     console.log(this.person);
     this.initForm();
+    this.showNextPersonInTheQueue();
+  }
+
+  public showNextPersonInTheQueue() {
+    this.empRecord = {};
+    if( !this.empQueue.length ) return;
+    const newPerson = {...this.empQueue.shift()};
+    if( this.empIds.indexOf( newPerson.id ) === -1 ) {
+      this.empRecord = newPerson;
+      this.newPersonCame = true;
+      this.empIds.push(newPerson.id);
+      console.log('newEmpRecord', this.empRecord);
+      console.log('new Emp Ids', this.empIds);
+    } else {
+      console.log("emp already present");
+      this.showNextPersonInTheQueue();
+    }
   }
 
   public initForm() {

@@ -11,7 +11,7 @@ const cors = require('cors');
 app.use(cors());
 app.use(bodyParser.json());
 
-// const empData = require('./employee.json');
+const empData = require('./employee.json');
 
 // const empRecord = require('./emp-record.json');
 
@@ -20,6 +20,7 @@ app.use(bodyParser.json());
 const listOfRegisteredUsers = require('./list-of-register-user.json');
 
 const newEmpCameInFrontOfCamera = require('./new-emp-data.json');
+const newEmpCameInFrontOfCameraOne = require('./new-emp-data.1.json');
 
 
 // app.listen(3000, () => {
@@ -74,10 +75,14 @@ io.on("connection", socket => {
 
   
     socket.on("message", () => {
-        setTimeout(() => {
+        setInterval(() => {
         console.log("Message Received: " );
             io.emit("message", newEmpCameInFrontOfCamera);
         }, 3000);
+        setTimeout(() => {
+            console.log("Message Received: " );
+            io.emit("message", newEmpCameInFrontOfCameraOne);
+        }, 7000);
       });
   
     

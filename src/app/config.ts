@@ -18,6 +18,7 @@ const configs = {
   },
   LOCALHOST: {
     TEST : 'http://localhost:3000/new_emp',
+    TODAYS_ATTENDANCE : LOCAL_HOST_SERVER + '/employee-attendance',
   },
   PRODUCTION: {
     TODAYS_ATTENDANCE : SERVER_URL + PORT + '/awiros_ms/attendence/api/console_data'
