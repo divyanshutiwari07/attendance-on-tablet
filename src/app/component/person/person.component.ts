@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { isNullOrUndefined } from 'util';
+
 import { ApiService } from '../../services/api.service';
 import { PersonDataService } from '../../services/person-data.service';
 import PresentEmployeeListModel from '../../models/present-employee-list-model';
@@ -89,6 +89,7 @@ export class PersonComponent implements OnInit {
   public onVerify() {
     console.log('Verified');
     console.log(this.person);
+    this.addToTheList(this.empRecord);
     this.initForm();
     this.showNextPersonInTheQueue();
   }
@@ -100,6 +101,11 @@ export class PersonComponent implements OnInit {
     this.showNextPersonInTheQueue();
   }
 
+  private addToTheList(newPerson) {    
+    this.empIds.push(newPerson.id);
+    console.log('addToTheList called: new Emp Ids', this.empIds);
+  }
+
   public showNextPersonInTheQueue() {
     this.empRecord = {};
     if( !this.empQueue.length ) return;
@@ -107,9 +113,7 @@ export class PersonComponent implements OnInit {
     if( this.empIds.indexOf( newPerson.id ) === -1 ) {
       this.empRecord = newPerson;
       this.newPersonCame = true;
-      this.empIds.push(newPerson.id);
       console.log('newEmpRecord', this.empRecord);
-      console.log('new Emp Ids', this.empIds);
     } else {
       console.log("emp already present");
       this.showNextPersonInTheQueue();

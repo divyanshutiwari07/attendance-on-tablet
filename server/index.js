@@ -78,11 +78,11 @@ io.on("connection", socket => {
         setInterval(() => {
         console.log("Message Received: " );
             io.emit("message", newEmpCameInFrontOfCamera);
-        }, 3000);
-        setTimeout(() => {
-            console.log("Message Received: " );
-            io.emit("message", newEmpCameInFrontOfCameraOne);
-        }, 7000);
+        }, 5000);
+        // setTimeout(() => {
+        //     console.log("Message Received: " );
+        //     io.emit("message", newEmpCameInFrontOfCameraOne);
+        // }, 7000);
       });
   
     
