@@ -8,8 +8,8 @@ let devMode = 'LOCALHOST';
 export const LOCAL_HOST_SERVER = 'http://localhost:3000';
 
 export const SOCKET_EVENTS = {
-  NEW_SERVER_EVENT : devMode === "ON_PREMISE" ? "new_event_occurred" : "message",
-  USER_JOINED_EVENT : devMode === "ON_PREMISE" ? "user_joined" : "message"
+  NEW_SERVER_EVENT : devMode === 'ON_PREMISE' ? 'new_event_occurred' : 'message',
+  USER_JOINED_EVENT : devMode === 'ON_PREMISE' ? 'user_joined' : 'message'
 };
 
 const configs = {

@@ -9,7 +9,7 @@ export default class Employee {
 
     constructor(element) {
         const dynamicKey = element.awi_data.awi_app_data.awi_blobs.awi_blob_ids[0];
-    
+
         this.name = element.awi_label;
         this.inTime = element.first_presence;
         this.outTime = element.last_presence;
@@ -17,6 +17,5 @@ export default class Employee {
         this.department = element.awi_data.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_subclass;
         this.id = element.awi_data.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_id;
 
-        
     }
 }
