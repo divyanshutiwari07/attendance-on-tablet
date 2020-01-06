@@ -21,6 +21,8 @@ const listOfRegisteredUsers = require('./list-of-register-user.json');
 
 const newEmpCameInFrontOfCamera = require('./new-emp-data.json');
 const newEmpCameInFrontOfCameraOne = require('./new-emp-data.1.json');
+const newEmpCameInFrontOfCameraTwo = require('./new-emp-data.2.json');
+const newEmpCameInFrontOfCameraThree = require('./new-emp-data.3.json');
 
 
 // app.listen(3000, () => {
@@ -75,14 +77,22 @@ io.on("connection", socket => {
 
   
     socket.on("message", () => {
-        setInterval(() => {
-        console.log("Message Received: " );
-            io.emit("message", newEmpCameInFrontOfCamera);
+        // setInterval(() => {
+        // console.log("Message Received: " );
+        //     io.emit("message", newEmpCameInFrontOfCamera);
+        // }, 5000);
+        setTimeout(() => {
+            console.log("Message Received: " );
+            io.emit("message", newEmpCameInFrontOfCameraOne);
         }, 5000);
+        setTimeout(() => {
+            console.log("Message Received: " );
+            io.emit("message", newEmpCameInFrontOfCameraTwo);
+        }, 10000);
         // setTimeout(() => {
         //     console.log("Message Received: " );
-        //     io.emit("message", newEmpCameInFrontOfCameraOne);
-        // }, 7000);
+        //     io.emit("message", newEmpCameInFrontOfCameraThree);
+        // }, 11000);
       });
   
     

@@ -11,11 +11,11 @@ export class PersonDataService {
   messages: Subject<any>;
 
   constructor(private wsService: WebsocketService) {
-    this.messages = <Subject<any>>wsService
+    this.messages = wsService
       .connect()
       .pipe(map((response: any): any => {
         return response;
-      }));
+      })) as Subject<any>;
    }
 
   initConnection(msg) {
