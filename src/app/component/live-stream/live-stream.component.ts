@@ -32,7 +32,7 @@ export class LiveStreamComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
   // initVideo(e) {

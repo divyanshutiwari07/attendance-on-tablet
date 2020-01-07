@@ -3,7 +3,6 @@ import { ApiService } from '../../services/api.service';
 import { PersonDataService } from '../../services/person-data.service';
 import PresentEmployeeListModel from '../../models/present-employee-list-model';
 import PresentNewEmployeeModel from '../../models/present-new-employee-model';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-person',
@@ -33,7 +32,7 @@ export class PersonComponent implements OnInit {
     this.startTime = new Date().setHours(0, 0, 0, 0);
     this.endTime = new Date().setHours(23, 59, 59, 999);
 
-    this.apiService.getPresentEmployeesForDate({'start_time': this.startTime, 'end_time': this.endTime })
+    this.apiService.getPresentEmployeesForDate({start_time: this.startTime, end_time: this.endTime })
     .subscribe(
       response => {
         this.empListObj = PresentEmployeeListModel.ModelMap(response);

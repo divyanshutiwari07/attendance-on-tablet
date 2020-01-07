@@ -77,18 +77,18 @@ io.on("connection", socket => {
 
   
     socket.on("message", () => {
-        // setInterval(() => {
-        // console.log("Message Received: " );
-        //     io.emit("message", newEmpCameInFrontOfCamera);
-        // }, 5000);
-        setTimeout(() => {
-            console.log("Message Received: " );
-            io.emit("message", newEmpCameInFrontOfCameraOne);
+        setInterval(() => {
+        console.log("Message Received: " );
+            io.emit("message", newEmpCameInFrontOfCamera);
         }, 5000);
         setTimeout(() => {
             console.log("Message Received: " );
-            io.emit("message", newEmpCameInFrontOfCameraTwo);
-        }, 10000);
+            io.emit("message", newEmpCameInFrontOfCameraOne);
+        }, 7000);
+        // setTimeout(() => {
+        //     console.log("Message Received: " );
+        //     io.emit("message", newEmpCameInFrontOfCameraTwo);
+        // }, 10000);
         // setTimeout(() => {
         //     console.log("Message Received: " );
         //     io.emit("message", newEmpCameInFrontOfCameraThree);

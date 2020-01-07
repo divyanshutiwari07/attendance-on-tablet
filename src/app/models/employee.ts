@@ -1,3 +1,5 @@
+import { config } from '../config';
+
 export default class Employee {
     name: string;
     inTime: string;
@@ -18,4 +20,14 @@ export default class Employee {
         this.id = element.awi_data.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_id;
 
     }
+
+//     public getUpdatedImageUrl(img_url) {
+//     const host = img_url.split('/')[2].split(':')[0];
+//     const port = img_url.split('/')[2].split(':')[1];
+
+//     let url = img_url.replace(host, config.SERVER_ADDRESS);
+//     url     = url.replace(port, config.PORT);
+//     return url;
+//   }
 }
+
