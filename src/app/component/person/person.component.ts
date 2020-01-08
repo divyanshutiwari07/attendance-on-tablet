@@ -67,7 +67,10 @@ export class PersonComponent implements OnInit {
       if ( !Object.keys(this.empRecord).length ) {
         this.showNextPersonInTheQueue();
       }
-    });
+    }, (error) => {
+      console.log('error', error);
+  }
+    );
   }
 
   // private extractDataForNewEmp(res) {
