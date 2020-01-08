@@ -23,7 +23,7 @@ export class WebsocketService {
     // const payload = token.split('.')[1];
     // const obj = window.atob(payload);
 
-    this.socket = io('http://localhost:3000');
+    this.socket = io(config.SERVER_ADDRESS_REALTIME);
 
     const observable = new Observable(observer => {
         this.socket.on('message', (data) => {

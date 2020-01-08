@@ -16,16 +16,27 @@ export class RestClient {
         };
     }
 
-    get(url: string, payload: Object = null, token = null) {
-
+    get(url: string, payload: object = null) {
         if (isNullOrUndefined(payload)) {
-            return this.http.get(url, this.httpOptions);
-        } else {
-            return this.http.post(url, payload, this.httpOptions);
+            return this.http.get(url);
+        }    else {
+            return this.http.post(url, payload);
         }
     }
 
-    post(url: string, payload: object = {}) {
-        return this.http.post(url, payload);
-    }
+
+    // final
+
+    // get(url: string, payload: Object = null, token = null) {
+
+    //     if (isNullOrUndefined(payload)) {
+    //         return this.http.get(url, this.httpOptions);
+    //     } else {
+    //         return this.http.post(url, payload, this.httpOptions);
+    //     }
+    // }
+
+    // post(url: string, payload: object = {}) {
+    //     return this.http.post(url, payload);
+    // }
 }
