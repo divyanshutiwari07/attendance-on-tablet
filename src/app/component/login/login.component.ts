@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     if (this.auth.isLoggedIn()) {
-      this.router.navigateByUrl('/person');
+      this.router.navigateByUrl('/attendance');
     }
     // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiY…QzNH0.hqK7VYFdj2vNBmIFk7_7Po0fUo_e-AF1VIWa8-nEUaY';
   }

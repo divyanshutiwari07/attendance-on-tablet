@@ -6,9 +6,11 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class RestClient {
-    private httpOptions: any;
-    constructor(private http: HttpClient) {
-        this.httpOptions = {
+ 
+    constructor(private http: HttpClient) {}
+
+    private getHttpOptions() {
+        return {
             headers: new HttpHeaders({
             //   'Content-Type':  'application/json',
               'Authorization': localStorage.getItem('token')
@@ -17,12 +19,7 @@ export class RestClient {
     }
 
     get(url: string, payload: object = null) {
-        this.httpOptions = {
-            headers: new HttpHeaders({
-            //   'Content-Type':  'application/json',
-              'Authorization': localStorage.getItem('token')
-            })
-        };
+
         if (isNullOrUndefined(payload)) {
             return this.http.get(url);
         }    else {
@@ -44,9 +41,9 @@ export class RestClient {
     //         })
     //     };
     //     if (isNullOrUndefined(payload)) {
-    //         return this.http.get(url, this.httpOptions);
+    //         return this.http.get(url, this.getHttpOptions());
     //     } else {
-    //         return this.http.post(url, payload, this.httpOptions);
+    //         return this.http.post(url, payload, this.getHttpOptions());
     //     }
     // }
 

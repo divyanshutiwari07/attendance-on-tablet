@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../services/api.service';
-import { PersonDataService } from '../../services/person-data.service';
-import PresentEmployeeListModel from '../../models/present-employee-list-model';
-import PresentNewEmployeeModel from '../../models/present-new-employee-model';
+import { ApiService } from '../../../services/api.service';
+import { PersonDataService } from '../../../services/person-data.service';
+import PresentEmployeeListModel from '../../../models/present-employee-list-model';
+import PresentNewEmployeeModel from '../../../models/present-new-employee-model';
 
 @Component({
   selector: 'app-person',
