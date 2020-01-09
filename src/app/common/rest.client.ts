@@ -16,18 +16,7 @@ export class RestClient {
         };
     }
 
-    // get(url: string, payload: object = null) {
-    //     if (isNullOrUndefined(payload)) {
-    //         return this.http.get(url);
-    //     }    else {
-    //         return this.http.post(url, payload);
-    //     }
-    // }
-
-
-    // final
-
-    get(url: string, payload: Object = null, token = null) {
+    get(url: string, payload: object = null) {
         this.httpOptions = {
             headers: new HttpHeaders({
             //   'Content-Type':  'application/json',
@@ -35,13 +24,33 @@ export class RestClient {
             })
         };
         if (isNullOrUndefined(payload)) {
-            return this.http.get(url, this.httpOptions);
-        } else {
-            return this.http.post(url, payload, this.httpOptions);
+            return this.http.get(url);
+        }    else {
+            return this.http.post(url, payload);
         }
     }
 
     post(url: string, payload: object = {}) {
         return this.http.post(url, payload);
     }
+
+    // final
+
+    // get(url: string, payload: Object = null, token = null) {
+    //     this.httpOptions = {
+    //         headers: new HttpHeaders({
+    //         //   'Content-Type':  'application/json',
+    //           'Authorization': localStorage.getItem('token')
+    //         })
+    //     };
+    //     if (isNullOrUndefined(payload)) {
+    //         return this.http.get(url, this.httpOptions);
+    //     } else {
+    //         return this.http.post(url, payload, this.httpOptions);
+    //     }
+    // }
+
+    // post(url: string, payload: object = {}) {
+    //     return this.http.post(url, payload);
+    // }
 }
