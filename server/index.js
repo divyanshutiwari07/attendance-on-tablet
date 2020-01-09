@@ -34,32 +34,37 @@ server.listen(3000, () => {
     console.log("started on port 5000");
 });
 
-app.post("/employee-attendance", (req, res, next) => {
-    console.log("=========== BOdy Payload =============");
-    console.log(req.body);
+// app.post("/employee-attendance", (req, res, next) => {
+//     console.log("=========== BOdy Payload =============");
+//     console.log(req.body);
 
-    console.log("============ Header ==============");
-    console.log(JSON.stringify(req.headers));
+//     console.log("============ Header ==============");
+//     console.log(JSON.stringify(req.headers));
 
-    console.log(req.body.awi_label);
+//     console.log(req.body.awi_label);
 
-    if( req.body.awi_label ) {
-        console.log("===================== Serving employee data ======================= ");
-        res.json(empRecord);
-    } else if( req.body.awi_chart_data ) {
-        console.log("===================== Serving chart data ======================= ");
-        res.json(chartData);
-    } else {
-        console.log("===================== Serving normal data ======================= ");
-        res.json(empData);
-    }
+//     if( req.body.awi_label ) {
+//         console.log("===================== Serving employee data ======================= ");
+//         res.json(empRecord);
+//     } else if( req.body.awi_chart_data ) {
+//         console.log("===================== Serving chart data ======================= ");
+//         res.json(chartData);
+//     } else {
+//         console.log("===================== Serving normal data ======================= ");
+//         res.json(empData);
+//     }
 
-});
+// });
 
-// app.get('/list_of_registered_users', (req, res, next) => {
-//     console.log("=========== Serving list_of_registered_users =============");
-//     res.json(listOfRegisteredUsers);
-// })
+app.post('/employee-attendance', (req, res, next) => {
+    console.log("=========== empdata =============");
+    res.json(empData);
+})
+
+app.post('/list_of_registered_users', (req, res, next) => {
+    console.log("=========== Serving list_of_registered_users =============");
+    res.json(listOfRegisteredUsers);
+})
 
 app.get('/new_emp', (req, res, next) => {
     console.log("=========== Serving list_of_registered_users =============");
@@ -77,18 +82,18 @@ io.on("connection", socket => {
 
   
     socket.on("message", () => {
-        setInterval(() => {
-        console.log("Message Received: " );
-            io.emit("message", newEmpCameInFrontOfCamera);
-        }, 5000);
+        // setInterval(() => {
+        // console.log("Message Received: " );
+        //     io.emit("message", newEmpCameInFrontOfCamera);
+        // }, 5000);
         setTimeout(() => {
             console.log("Message Received: " );
             io.emit("message", newEmpCameInFrontOfCameraOne);
         }, 7000);
-        // setTimeout(() => {
-        //     console.log("Message Received: " );
-        //     io.emit("message", newEmpCameInFrontOfCameraTwo);
-        // }, 10000);
+        setTimeout(() => {
+            console.log("Message Received: " );
+            io.emit("message", newEmpCameInFrontOfCameraTwo);
+        }, 10000);
         // setTimeout(() => {
         //     console.log("Message Received: " );
         //     io.emit("message", newEmpCameInFrontOfCameraThree);

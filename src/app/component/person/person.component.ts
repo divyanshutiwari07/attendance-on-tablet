@@ -22,6 +22,7 @@ export class PersonComponent implements OnInit {
   public empListObj: PresentEmployeeListModel;
   public empIds;
   public empQueue = [];
+  public getRegisteredUsersName: any = [];
 
   constructor(private apiService: ApiService, private personData: PersonDataService) { }
 
@@ -32,9 +33,34 @@ export class PersonComponent implements OnInit {
     this.startTime = new Date().setHours(0, 0, 0, 0);
     this.endTime = new Date().setHours(23, 59, 59, 999);
 
+    this.getPresentEmpData();
+    this.getRegisterUsersData();
+
+  }
+
+  private getRegisterUsersData() {
+    this.apiService.getListOfRegisteredUsers()
+    .subscribe(
+      response => {
+        console.log('registered users data', response);
+        this.getRegisteredUsersName = this.getListOfRegisteredUsersName(response.data);
+        console.log(this.getRegisteredUsersName);
+      }
+    );
+  }
+
+  private getListOfRegisteredUsersName(res) {
+    const getRegisteredUsersName = res.map((a) => a.awi_label);
+    return getRegisteredUsersName.map((d) => {
+      return  {name: d };
+    });
+  }
+
+  private getPresentEmpData() {
     this.apiService.getPresentEmployeesForDate({start_time: this.startTime, end_time: this.endTime })
     .subscribe(
       response => {
+        console.log('prestn emp data', response);
         this.empListObj = PresentEmployeeListModel.ModelMap(response);
         this.empIds = this.empListObj.presentEmpIds;
         console.log('emp ids', this.empIds);
@@ -52,7 +78,7 @@ export class PersonComponent implements OnInit {
 
   private checkNewPresentEmp() {
     this.personData.messages.subscribe(data => {
-      console.log(data);
+      console.log('new person ', data);
       const newPerson = PresentNewEmployeeModel.ModelMap(data).presentEmployee;
       // const newPerson = this.extractDataForNewEmp(data);
       // console.log('checknewperson' , newPerson);
