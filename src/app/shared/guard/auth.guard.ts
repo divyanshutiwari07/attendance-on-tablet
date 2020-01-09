@@ -8,14 +8,12 @@ export class AuthGuard implements CanActivate {
     constructor(private router: Router) {}
 
     canActivate() {
-        const token = localStorage.getItem('token');
-
-        if (!isNullOrUndefined(token)) {
+        if( !this.isLoggedIn() ) {
+            this.router.navigateByUrl('/login');
+            return false;
+        } else {
             return true;
         }
-
-        this.router.navigate(['/login']);
-        return false;
     }
 
     isLoggedIn() {
@@ -28,6 +26,6 @@ export class AuthGuard implements CanActivate {
 
     logIn(token) {
         localStorage.setItem('token', token);
-        this.router.navigateByUrl('/person');
+        this.router.navigateByUrl('/attendance');
     }
 }

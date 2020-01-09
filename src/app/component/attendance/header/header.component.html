@@ -1,0 +1,27 @@
+<div class="row header">
+    <div class="col-md-12 col-sm-12 d-flex">
+      <img src="../../../assets/awiros_logo_reg.svg" alt="Avatar">
+      
+      <ul class="navbar-nav ml-auto">                
+            <li class="nav-item dropdown" placement="bottom-right" ngbDropdown >
+                <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle >
+                    <img src="assets/user-icon.png" />
+                </a>
+                <div class="dropdown-menu-right" ngbDropdownMenu> 
+                    <!-- <a class="dropdown-item" href="javascript:void(0)">
+                        <i class="fa fa-fw fa-user"></i> {{ 'Profile' }}
+                    </a>
+                    <a class="dropdown-item" href="javascript:void(0)">
+                        <i class="fa fa-fw fa-envelope"></i> {{ 'Inbox' }}
+                    </a>
+                    <a class="dropdown-item" href="javascript:void(0)">
+                        <i class="fa fa-fw fa-gear"></i> {{ 'Settings' }}
+                    </a> -->
+                    <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()">
+                        <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' }}
+                    </a>
+                </div>
+            </li>
+        </ul>    
+    </div>
+</div>
