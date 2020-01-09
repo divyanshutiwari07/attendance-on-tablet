@@ -44,7 +44,12 @@
                   </div>  
                     <div class="form-group">
                       <div class="col-sm-6">
-                          <input type="text" #name="ngModel" [(ngModel)]="person.name" class="form-control" name="name" [disabled]="person.isRecognized" placeholder="Enter your name">
+                          <select class="form-control" #name="ngModel" name="name"
+                          [(ngModel)]="person.name" [disabled]="person.isRecognized"  required>
+                            <option value="undefined"  selected disabled>Select Your Name </option>
+                            <option *ngFor="let a of getRegisteredUsersName;let i = index" [ngValue]="a.name">{{ a.name }}</option>
+                          </select>
+                          <!-- <input type="text" #name="ngModel" [(ngModel)]="person.name" class="form-control" name="name" [disabled]="person.isRecognized" placeholder="Enter your name"> -->
                       </div>
                       <div>
                           <button (click)="onSubmit()" class="btn btn-secondary" [disabled]="person.isRecognized">Submit</button>

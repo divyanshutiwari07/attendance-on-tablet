@@ -10,11 +10,20 @@ export class ApiService {
 
   constructor(private http: RestClient) { }
 
-  getNewEmpDetails() {
-    return this.http.get(config.TEST);
-  }
+  // getNewEmpDetails() {
+  //   return this.http.get(config.TEST);
+  // }
 
   getPresentEmployeesForDate(obj): Observable <any> {
     return this.http.get(config.TODAYS_ATTENDANCE, obj);
   }
+
+  getListOfRegisteredUsers(): Observable <any> {
+    return this.http.get(config.LIST_OF_REGISTER_URL , {});
+  }
+
+  login(obj): Observable <any> {
+    return this.http.post(config.LOGIN_URL , obj);
+  }
+
 }
