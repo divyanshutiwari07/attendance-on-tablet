@@ -2,12 +2,12 @@ const PORT = '3000';
 const _PORT = '4000';
 const SERVER_URL = 'http://192.168.0.80:';
 
-const devMode = 'ON_PREMISE';
-// let devMode = 'LOCALHOST';
+// const devMode = 'ON_PREMISE';
+let devMode = 'LOCALHOST';
 // const devMode = "PRODUCTION";
 
-// export const LOCAL_HOST_SERVER = 'http://localhost:' + PORT;
-export const LOCAL_HOST_SERVER = 'http://192.168.0.94:' + PORT;
+export const LOCAL_HOST_SERVER = 'http://localhost:' + PORT;
+// export const LOCAL_HOST_SERVER = 'http://192.168.0.94:' + PORT;
 
 export const SOCKET_EVENTS = {
   NEW_SERVER_EVENT : devMode === 'ON_PREMISE' ? 'new_event_occurred' : 'message',
@@ -23,6 +23,7 @@ const configs = {
   },
 
   LOCALHOST: {
+    LOGIN_URL : LOCAL_HOST_SERVER + '/login',
     SERVER_ADDRESS_REALTIME : LOCAL_HOST_SERVER,
     TEST :  LOCAL_HOST_SERVER + '/new_emp',
     TODAYS_ATTENDANCE : LOCAL_HOST_SERVER + '/employee-attendance',

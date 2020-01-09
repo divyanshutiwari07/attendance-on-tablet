@@ -12,6 +12,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const empData = require('./employee.json');
+const login = require('./login.json');
 
 // const empRecord = require('./emp-record.json');
 
@@ -63,6 +64,7 @@ app.post('/employee-attendance', (req, res, next) => {
 
 app.post('/list_of_registered_users', (req, res, next) => {
     console.log("=========== Serving list_of_registered_users =============");
+    
     res.json(listOfRegisteredUsers);
 })
 
@@ -70,6 +72,13 @@ app.get('/new_emp', (req, res, next) => {
     console.log("=========== Serving list_of_registered_users =============");
     res.json(newEmpCameInFrontOfCamera);
 })
+
+app.post('/login', (req, res, next) => {
+    console.log(res.body);
+    console.log("=========== Serving list_of_registered_users =============");
+    res.json(login);
+})
+
 
 io.on("connection", socket => {
     // Log whenever a user connects
