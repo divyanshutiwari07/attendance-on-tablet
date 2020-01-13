@@ -26,4 +26,8 @@ export class ApiService {
     return this.http.post(config.LOGIN_URL , obj);
   }
 
+  verifyEmployeePresence(obj): Observable <any> {
+    return this.http.get(config.VERIFY_EMPLOYEE_PRESENCE_URL, obj);
+  }
+
 }
