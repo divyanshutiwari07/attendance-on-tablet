@@ -1,7 +1,7 @@
 {
   "data": {
     "awi_name": "awi_facial_recognition",
-    "timestamp": "2019-12-26T10:02:05.100Z",
+    "timestamp": "2020-01-13T12:22:14.671Z",
     "awi_facial_recognition": {
       "awi_app_data": {
         "awi_app": {
@@ -24,10 +24,10 @@
             "awi_face"
           ],
           "awi_blob_labels": [
-            "Unrecognized"
+            "Shivansh"
           ],
           "awi_blob_ids": [
-            "awi_3340"
+            "awi_60"
           ],
           "awi_blob_config": {
             "min_size": {
@@ -44,101 +44,215 @@
               "status": true,
               "custom_class": "",
               "class": "awi_class_face",
-              "awi_conf": 0.49,
+              "awi_conf": 0.5,
               "awi_blob_db": [
                 {
                   "imgs": [
-                    "http://localhost:3000/objects/5d6e082068b159000f375777_0.jpg"
+                    "http://localhost:3000/objects/5e0dcbfe4d160700328d3b8e_0.jpg"
                   ],
                   "img_url": [
-                    "/home/awiros-docker/awiros-nodejs/public/objects/5d6e082068b159000f375777_0.jpg"
+                    "/home/awiros-docker/awiros-nodejs/public/objects/5e0dcbfe4d160700328d3b8e_0.jpg"
                   ],
                   "image_base64": "base64",
-                  "id": 48976,
-                  "awi_subclass": "Sales",
-                  "awi_severity": "awi_critical",
-                  "awi_label": "Sunil",
-                  "awi_id": 48976,
-                  "awi_conf": 1,
-                  "awi_client_id": 2,
-                  "awi_class": "awi_face",
-                  "_id": "5d6e082068b159000f375777",
-                  "__v": 0
-                },
-                {
-                  "imgs": [
-                    "http://localhost:3000/objects/5dd50d14495bfd005a62027f_0.jpg"
-                  ],
-                  "img_url": [
-                    "/home/awiros-docker/awiros-nodejs/public/objects/5dd50d14495bfd005a62027f_0.jpg"
-                  ],
-                  "image_base64": "base64",
-                  "id": 2135,
-                  "awi_subclass": "Director",
+                  "id": 7,
+                  "awi_subclass": "System Engineer",
                   "awi_severity": "awi_high",
-                  "awi_label": "vikram",
-                  "awi_id": 2135,
+                  "awi_label": "Yogesh",
+                  "awi_id": 7,
                   "awi_conf": 1,
                   "awi_client_id": 2,
                   "awi_class": "awi_face",
-                  "_id": "5dd50d14495bfd005a62027f",
+                  "_id": "5e0dcbfe4d160700328d3b8e",
                   "__v": 0
                 },
                 {
                   "imgs": [
-                    "http://localhost:3000/objects/5dd50d1e495bfd005a620280_0.jpg"
+                    "http://192.168.0.80:3000/objects/5e171b7e3489c0003212fa72_0.jpg"
                   ],
                   "img_url": [
-                    "/home/awiros-docker/awiros-nodejs/public/objects/5dd50d1e495bfd005a620280_0.jpg"
+                    "/home/awiros-docker/awiros-nodejs/public/objects/5e171b7e3489c0003212fa72_0.jpg"
                   ],
                   "image_base64": "base64",
-                  "id": 2136,
+                  "id": 17,
+                  "awi_subclass": "Engineer",
+                  "awi_severity": "awi_critical",
+                  "awi_label": "Divyanshu",
+                  "awi_id": 17,
+                  "awi_conf": 1,
+                  "awi_client_id": 2,
+                  "awi_class": "awi_face",
+                  "_id": "5e171b7e3489c0003212fa72",
+                  "__v": 0
+                },
+                {
+                  "imgs": [
+                    "http://192.168.0.80:3000/objects/5e171b963489c0003212fa77_0.jpg"
+                  ],
+                  "img_url": [
+                    "/home/awiros-docker/awiros-nodejs/public/objects/5e171b963489c0003212fa77_0.jpg"
+                  ],
+                  "image_base64": "base64",
+                  "id": 18,
+                  "awi_subclass": "Engineer",
+                  "awi_severity": "awi_high",
+                  "awi_label": "Taufizul",
+                  "awi_id": 18,
+                  "awi_conf": 1,
+                  "awi_client_id": 2,
+                  "awi_class": "awi_face",
+                  "_id": "5e171b963489c0003212fa77",
+                  "__v": 0
+                },
+                {
+                  "imgs": [
+                    "http://192.168.0.80:3000/objects/5e171ba43489c0003212fa78_0.jpg"
+                  ],
+                  "img_url": [
+                    "/home/awiros-docker/awiros-nodejs/public/objects/5e171ba43489c0003212fa78_0.jpg"
+                  ],
+                  "image_base64": "base64",
+                  "id": 19,
+                  "awi_subclass": "Engineer",
+                  "awi_severity": "awi_critical",
+                  "awi_label": "vikram",
+                  "awi_id": 19,
+                  "awi_conf": 1,
+                  "awi_client_id": 2,
+                  "awi_class": "awi_face",
+                  "_id": "5e171ba43489c0003212fa78",
+                  "__v": 0
+                },
+                {
+                  "imgs": [
+                    "http://192.168.0.80:3000/objects/5e171bc83489c0003212fa85_0.jpg"
+                  ],
+                  "img_url": [
+                    "/home/awiros-docker/awiros-nodejs/public/objects/5e171bc83489c0003212fa85_0.jpg"
+                  ],
+                  "image_base64": "base64",
+                  "id": 20,
                   "awi_subclass": "Engineer",
                   "awi_severity": "awi_medium",
                   "awi_label": "paurush",
-                  "awi_id": 2136,
+                  "awi_id": 20,
                   "awi_conf": 1,
                   "awi_client_id": 2,
                   "awi_class": "awi_face",
-                  "_id": "5dd50d1e495bfd005a620280",
+                  "_id": "5e171bc83489c0003212fa85",
                   "__v": 0
                 },
                 {
                   "imgs": [
-                    "http://localhost:3000/objects/5dd50d32495bfd005a620281_0.jpg"
+                    "http://192.168.0.80:3000/objects/5e171bd43489c0003212fa86_0.jpg"
                   ],
                   "img_url": [
-                    "/home/awiros-docker/awiros-nodejs/public/objects/5dd50d32495bfd005a620281_0.jpg"
+                    "/home/awiros-docker/awiros-nodejs/public/objects/5e171bd43489c0003212fa86_0.jpg"
                   ],
                   "image_base64": "base64",
-                  "id": 2137,
-                  "awi_subclass": "Engineer",
-                  "awi_severity": "awi_critical",
-                  "awi_label": "Taufizul",
-                  "awi_id": 2137,
-                  "awi_conf": 1,
-                  "awi_client_id": 2,
-                  "awi_class": "awi_face",
-                  "_id": "5dd50d32495bfd005a620281",
-                  "__v": 0
-                },
-                {
-                  "imgs": [
-                    "http://localhost:3000/objects/5ddb8e919dda400215a73eea_0.jpg"
-                  ],
-                  "img_url": [
-                    "/home/awiros-docker/awiros-nodejs/public/objects/5ddb8e919dda400215a73eea_0.jpg"
-                  ],
-                  "image_base64": "base64",
-                  "id": 2150,
+                  "id": 21,
                   "awi_subclass": "Engineer",
                   "awi_severity": "awi_medium",
                   "awi_label": "piyush",
-                  "awi_id": 2150,
+                  "awi_id": 21,
                   "awi_conf": 1,
                   "awi_client_id": 2,
                   "awi_class": "awi_face",
-                  "_id": "5ddb8e919dda400215a73eea",
+                  "_id": "5e171bd43489c0003212fa86",
+                  "__v": 0
+                },
+                {
+                  "imgs": [
+                    "http://192.168.0.80:3000/objects/5e171ceadaf6200031ca4945_0.jpeg"
+                  ],
+                  "img_url": [
+                    "/home/awiros-docker/awiros-nodejs/public/objects/5e171ceadaf6200031ca4945_0.jpeg"
+                  ],
+                  "image_base64": "base64",
+                  "id": 22,
+                  "awi_subclass": "Engineer",
+                  "awi_severity": "awi_critical",
+                  "awi_label": "Nitish",
+                  "awi_id": 22,
+                  "awi_conf": 1,
+                  "awi_client_id": 2,
+                  "awi_class": "awi_face",
+                  "_id": "5e171ceadaf6200031ca4945",
+                  "__v": 0
+                },
+                {
+                  "imgs": [
+                    "http://192.168.0.80:3000/objects/5e171cffdaf6200031ca4946_0.jpeg"
+                  ],
+                  "img_url": [
+                    "/home/awiros-docker/awiros-nodejs/public/objects/5e171cffdaf6200031ca4946_0.jpeg"
+                  ],
+                  "image_base64": "base64",
+                  "id": 23,
+                  "awi_subclass": "Engineer",
+                  "awi_severity": "awi_medium",
+                  "awi_label": "piyush-p2",
+                  "awi_id": 23,
+                  "awi_conf": 1,
+                  "awi_client_id": 2,
+                  "awi_class": "awi_face",
+                  "_id": "5e171cffdaf6200031ca4946",
+                  "__v": 0
+                },
+                {
+                  "imgs": [
+                    "http://192.168.0.80:3000/objects/5e171ecddaf6200031ca49e7_0.jpeg"
+                  ],
+                  "img_url": [
+                    "/home/awiros-docker/awiros-nodejs/public/objects/5e171ecddaf6200031ca49e7_0.jpeg"
+                  ],
+                  "image_base64": "base64",
+                  "id": 25,
+                  "awi_subclass": "Engineer",
+                  "awi_severity": "awi_medium",
+                  "awi_label": "Salil",
+                  "awi_id": 25,
+                  "awi_conf": 1,
+                  "awi_client_id": 2,
+                  "awi_class": "awi_face",
+                  "_id": "5e171ecddaf6200031ca49e7",
+                  "__v": 0
+                },
+                {
+                  "imgs": [
+                    "http://192.168.0.80:3000/objects/5e1c5e177dc598003144e548_0.jpeg"
+                  ],
+                  "img_url": [
+                    "/home/awiros-docker/awiros-nodejs/public/objects/5e1c5e177dc598003144e548_0.jpeg"
+                  ],
+                  "image_base64": "base64",
+                  "id": 35,
+                  "awi_subclass": "Engineer",
+                  "awi_severity": "awi_medium",
+                  "awi_label": "Shivansh",
+                  "awi_id": 35,
+                  "awi_conf": 1,
+                  "awi_client_id": 2,
+                  "awi_class": "awi_face",
+                  "_id": "5e1c5e177dc598003144e548",
+                  "__v": 0
+                },
+                {
+                  "imgs": [
+                    "http://192.168.0.80:3000/objects/5e1c5e597dc598003144e563_0.jpeg"
+                  ],
+                  "img_url": [
+                    "/home/awiros-docker/awiros-nodejs/public/objects/5e1c5e597dc598003144e563_0.jpeg"
+                  ],
+                  "image_base64": "base64",
+                  "id": 36,
+                  "awi_subclass": "SR Manager",
+                  "awi_severity": "awi_medium",
+                  "awi_label": "Nikhil",
+                  "awi_id": 36,
+                  "awi_conf": 1,
+                  "awi_client_id": 2,
+                  "awi_class": "awi_face",
+                  "_id": "5e1c5e597dc598003144e563",
                   "__v": 0
                 }
               ]
@@ -151,30 +265,30 @@
             },
             "awi_detect": []
           },
-          "awi_3340": {
-            "img_base64": "http://localhost:3000/detections/48522/2193/48522_2193_6887_awi_3340.jpg",
+          "awi_60": {
+            "img_base64": "http://192.168.0.80:3000/detections/3/9/3_9_10797_awi_60.jpg",
             "classification": {
               "status": true,
               "awi_url_db": "url",
               "awi_max_match_idx": 0,
-              "awi_label": "Unrecognized",
+              "awi_label": "Shivansh",
               "awi_descriptor": "",
-              "awi_conf": 0,
+              "awi_conf": 0.7421187361218401,
               "awi_class": "awi_face",
               "awi_blob_db": [
                 {
                   "imgs": [
-                    "http://localhost:3000/objects/5ddb8e919dda400215a73eea_0.jpg"
+                    "http://192.168.0.80:3000/objects/5e1c5e177dc598003144e548_0.jpeg"
                   ],
                   "img_url": [
-                    "/home/awiros-docker/awiros-nodejs/public/objects/5ddb8e919dda400215a73eea_0.jpg"
+                    "/home/awiros-docker/awiros-nodejs/public/objects/5e1c5e177dc598003144e548_0.jpeg"
                   ],
                   "img_base64": "base64",
-                  "awi_subclass": "Director",
-                  "awi_severity": 0,
-                  "awi_label": "Arvind Kaushik",
-                  "awi_id": 2150,
-                  "awi_conf": 0,
+                  "awi_subclass": "Engineer",
+                  "awi_severity": 1,
+                  "awi_label": "Shivansh",
+                  "awi_id": 35,
+                  "awi_conf": 0.7421187361218401,
                   "awi_class": "awi_face",
                   "__v": 0
                 }
@@ -188,34 +302,34 @@
             },
             "awi_coords": [
               {
-                "y": 0.38854166865348816,
-                "x": 0.5375000238418579
+                "y": 0.5115384459495544,
+                "x": 0.5192307829856873
               },
               {
-                "y": 0.38854166865348816,
-                "x": 0.617968738079071
+                "y": 0.5115384459495544,
+                "x": 0.574999988079071
               },
               {
-                "y": 0.5385416746139526,
-                "x": 0.617968738079071
+                "y": 0.6102564334869385,
+                "x": 0.574999988079071
               },
               {
-                "y": 0.5385416746139526,
-                "x": 0.5375000238418579
+                "y": 0.6102564334869385,
+                "x": 0.5192307829856873
               }
             ]
           }
         }
       },
-      "timestamp": "2019-12-26T10:02:05.100Z",
-      "location": "HW 2",
+      "timestamp": "2020-01-13T12:22:14.671Z",
+      "location": "FR-attendence_PTZ",
       "awi_frame": {
-        "width": 1280,
-        "height": 960,
-        "image": "http://localhost:3000/frame/48522/2193/48522_2193_6887.jpg"
+        "width": 1040,
+        "height": 780,
+        "image": "http://192.168.0.80:3000/frame/3/9/3_9_10797.jpg"
       },
-      "awi_severity": "awi_low",
-      "awi_camid": 2193
+      "awi_severity": "awi_medium",
+      "awi_camid": 9
     }
   }
 }

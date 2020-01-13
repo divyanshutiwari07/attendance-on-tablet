@@ -3,6 +3,7 @@ import { ApiService } from '../../../services/api.service';
 import { PersonDataService } from '../../../services/person-data.service';
 import PresentEmployeeListModel from '../../../models/present-employee-list-model';
 import PresentNewEmployeeModel from '../../../models/present-new-employee-model';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-person',
@@ -44,12 +45,18 @@ export class PersonComponent implements OnInit {
       response => {
         console.log('registered users data', response);
         this.getRegisteredUsersName = this.getListOfRegisteredUsersName(response.data);
-        console.log(this.getRegisteredUsersName);
+        console.log('list object', this.getRegisteredUsersName);
       }
     );
   }
 
   private getListOfRegisteredUsersName(res) {
+    if (isNullOrUndefined(res) || res.success === false) {
+      // this.errorToaster(res.msg);
+      console.log('no registered users data found');
+      return [];
+    }
+
     const getRegisteredUsersName = res.map((a) => a.awi_label);
     return getRegisteredUsersName.map((d) => {
       return  {name: d };
@@ -85,9 +92,10 @@ export class PersonComponent implements OnInit {
       const index = this.empQueue.findIndex((e) => e.id === newPerson.id);
 
       if (index === -1 && newPerson.name !== 'Unrecognized') {
+      // if (index === -1) { 
           this.empQueue.push(newPerson);
       } else {
-          this.empQueue[index] = newPerson;
+          // this.empQueue[index] = newPerson;
       }
       console.log('Queue Status', this.empQueue);
       if ( !Object.keys(this.empRecord).length ) {
@@ -119,19 +127,31 @@ export class PersonComponent implements OnInit {
   public onVerify() {
     console.log('Verified');
     console.log(this.person);
-    // response for api service
-    this.addToTheList(this.empRecord);
-    this.initForm();
-    this.showNextPersonInTheQueue();
+    // tslint:disable-next-line:max-line-length
+    this.apiService.verifyEmployeePresence({'id' : this.empRecord.alertId, 'blob_id': this.empRecord.blobId, 'awi_label': this.empRecord.name}).subscribe( response => {
+      console.log('verify emp presence', response);
+      if ( response.success === true ) {
+        this.addToTheList(this.empRecord);
+        this.initForm();
+        this.showNextPersonInTheQueue();
+      }
+    });
+
   }
 
   public onSubmit() {
     console.log('Submitted');
     console.log(this.person);
-    // response for api service
-    this.addToTheList(this.empRecord);
-    this.initForm();
-    this.showNextPersonInTheQueue();
+    // tslint:disable-next-line:max-line-length
+    this.apiService.verifyEmployeePresence({'id' : this.empRecord.alertId, 'blob_id': this.empRecord.blobId, 'awi_label': this.person.name}).subscribe( response => {
+      console.log('verify emp presence', response);
+      if ( response.success === true ) {
+        this.addToTheList(this.empRecord);
+        this.initForm();
+        this.showNextPersonInTheQueue();
+      }
+    });
+
   }
 
   private addToTheList(newPerson) {
@@ -144,6 +164,7 @@ export class PersonComponent implements OnInit {
     if ( !this.empQueue.length ) { return; }
     const newPerson = {...this.empQueue.shift()};
     if ( this.empIds.indexOf( newPerson.id ) === -1 ) {
+    // if ( this.empIds.indexOf( newPerson.id ) !== -1 ) {
       this.empRecord = newPerson;
       this.newPersonCame = true;
       console.log('newEmpRecord', this.empRecord);

@@ -10,7 +10,7 @@
         <div class="row">
           <div class="col-md-12 user">
             <div class="avatar coulmn">
-              <img src="https://www.tutorialrepublic.com/examples/images/avatar/1.jpg" alt="Avatar"> 
+              <img src={{empRecord.photo}} alt="Avatar"> 
             </div>
             <div class="coulmn">
               <div >Time of Entrance: </div> <span> {{empRecord.inTime | date: 'yyyy/MM/dd h:mm:ss a'}} </span>
@@ -46,7 +46,7 @@
                       <div class="col-sm-6">
                           <select class="form-control" #name="ngModel" name="name"
                           [(ngModel)]="person.name" [disabled]="person.isRecognized"  required>
-                            <option value="undefined"  selected disabled>Select Your Name </option>
+                            <option value="">Select Your Name</option>
                             <option *ngFor="let a of getRegisteredUsersName;let i = index" [ngValue]="a.name">{{ a.name }}</option>
                           </select>
                           <!-- <input type="text" #name="ngModel" [(ngModel)]="person.name" class="form-control" name="name" [disabled]="person.isRecognized" placeholder="Enter your name"> -->
