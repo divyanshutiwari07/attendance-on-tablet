@@ -30,4 +30,8 @@ export class ApiService {
     return this.http.get(config.VERIFY_EMPLOYEE_PRESENCE_URL, obj);
   }
 
+  getListOfSources(): Observable <any> {
+    return this.http.get(config.LIST_OF_SOURCES_URL, {});
+  }
+
 }

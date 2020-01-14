@@ -12,6 +12,11 @@ import { AttendanceComponent } from './component/attendance/attendance.component
 import { HeaderComponent } from './component/attendance/header/header.component';
 import { PersonComponent } from './component/attendance/person/person.component';
 import { LiveStreamComponent } from './component/attendance/live-stream/live-stream.component';
+import { MaterialModule } from './common/material/material.module';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +32,10 @@ import { LiveStreamComponent } from './component/attendance/live-stream/live-str
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MaterialModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [ AuthGuard ],
   bootstrap: [AppComponent]

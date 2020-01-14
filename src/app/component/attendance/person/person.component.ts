@@ -4,6 +4,7 @@ import { PersonDataService } from '../../../services/person-data.service';
 import PresentEmployeeListModel from '../../../models/present-employee-list-model';
 import PresentNewEmployeeModel from '../../../models/present-new-employee-model';
 import { isNullOrUndefined } from 'util';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-person',
@@ -25,7 +26,10 @@ export class PersonComponent implements OnInit {
   public empQueue = [];
   public getRegisteredUsersName: any = [];
 
-  constructor(private apiService: ApiService, private personData: PersonDataService) { }
+  constructor(
+    private apiService: ApiService,
+    private personData: PersonDataService,
+    private notifyService: NotificationService) { }
 
   ngOnInit() {
     this.startSocketConnection();
@@ -36,6 +40,8 @@ export class PersonComponent implements OnInit {
 
     this.getPresentEmpData();
     this.getRegisterUsersData();
+
+    console.log('testing production');
 
   }
 
@@ -92,7 +98,7 @@ export class PersonComponent implements OnInit {
       const index = this.empQueue.findIndex((e) => e.id === newPerson.id);
 
       if (index === -1 && newPerson.name !== 'Unrecognized') {
-      // if (index === -1) { 
+      // if (index === -1) {
           this.empQueue.push(newPerson);
       } else {
           // this.empQueue[index] = newPerson;
@@ -131,9 +137,12 @@ export class PersonComponent implements OnInit {
     this.apiService.verifyEmployeePresence({'id' : this.empRecord.alertId, 'blob_id': this.empRecord.blobId, 'awi_label': this.empRecord.name}).subscribe( response => {
       console.log('verify emp presence', response);
       if ( response.success === true ) {
+        this.successToaster('Verify Successfully !');
         this.addToTheList(this.empRecord);
         this.initForm();
         this.showNextPersonInTheQueue();
+      } else {
+        this.errorToaster(response.msg);
       }
     });
 
@@ -146,9 +155,12 @@ export class PersonComponent implements OnInit {
     this.apiService.verifyEmployeePresence({'id' : this.empRecord.alertId, 'blob_id': this.empRecord.blobId, 'awi_label': this.person.name}).subscribe( response => {
       console.log('verify emp presence', response);
       if ( response.success === true ) {
+        this.successToaster(response.msg);
         this.addToTheList(this.empRecord);
         this.initForm();
         this.showNextPersonInTheQueue();
+      } else {
+        this.errorToaster(response.msg);
       }
     });
 
@@ -180,7 +192,14 @@ export class PersonComponent implements OnInit {
         isRecognized: true
       };
       this.newPersonCame = false;
+  }
 
+  successToaster(message: string) {
+    this.notifyService.showSuccess(message,  '');
+  }
+
+  errorToaster(message: string) {
+    this.notifyService.showError(message,  '');
   }
 
 }

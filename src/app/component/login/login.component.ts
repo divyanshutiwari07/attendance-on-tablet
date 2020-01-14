@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { AuthGuard } from '../../shared/guard';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,11 @@ export class LoginComponent implements OnInit {
 
   loginDetails: any = {};
 
-  constructor(private apiService: ApiService, private auth: AuthGuard, private router: Router) { }
+  constructor(
+    private apiService: ApiService,
+    private auth: AuthGuard,
+    private router: Router,
+    private notifyService: NotificationService) { }
 
   ngOnInit() {
 
@@ -32,9 +37,21 @@ export class LoginComponent implements OnInit {
 
       if ( loginRes.success ) {
             this.auth.logIn(loginRes.token );
+            this.successToaster(loginRes.msg);
         } else {
             alert(loginRes.msg);
+            this.errorToaster(loginRes.msg);
         }
     });
   }
+
+  successToaster(message: string) {
+    this.notifyService.showSuccess(message,  '');
+  }
+
+  errorToaster(message: string) {
+    this.notifyService.showError(message,  '');
+  }
 }
+
+

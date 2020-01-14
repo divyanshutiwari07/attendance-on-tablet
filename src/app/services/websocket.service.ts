@@ -24,7 +24,10 @@ export class WebsocketService {
     const payload = token.split('.')[1];
     const obj = window.atob(payload);
 
+    console.log('address', config.SERVER_ADDRESS_REALTIME);
+
     this.socket = io(config.SERVER_ADDRESS_REALTIME);
+    //this.socket = io('http://192.168.0.21:3000');
 
     const observable = new Observable(observer => {
         this.socket.on(SOCKET_EVENTS.NEW_SERVER_EVENT, (data) => {
@@ -37,6 +40,7 @@ export class WebsocketService {
 
     const observer = {
         next: (data: Object) => {
+          console.log('evnets user');
           this.socket.emit(SOCKET_EVENTS.USER_JOINED_EVENT,  JSON.parse(obj).id);
         },
     };
