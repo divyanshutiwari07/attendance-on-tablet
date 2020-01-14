@@ -1,5 +1,9 @@
-.person-container {
+:host {
   background-color: #fff;
+  display: block;
+}
+.person-container {
+  
   padding: 10px 30px;
   color: #4d4e4f;
   margin-bottom: 20px;
