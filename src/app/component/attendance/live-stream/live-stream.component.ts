@@ -1,70 +1,47 @@
-import { Component,
-  OnInit,
-  ElementRef,
-  VERSION,
-  ViewChild,
-  // ViewChildren,
-  // QueryList,
-  // NgModule,
-  // AfterViewInit
-} from '@angular/core';
+import { Component, OnInit, OnChanges} from '@angular/core';
+import { ApiService } from '../../../services/api.service';
+import { config } from '../../../config';
 
 @Component({
   selector: 'app-live-stream',
   templateUrl: './live-stream.component.html',
   styleUrls: ['./live-stream.component.scss']
 })
-export class LiveStreamComponent implements OnInit {
+export class LiveStreamComponent implements OnInit, OnChanges {
 
-
-  // @ViewChild('video', {static: false}) video: ElementRef;
-  // ngVersion: string;
-  // streaming = false;
-  // error: any;
-  // private stream: MediaStream = null;
-  // private constraints = {
-  //   audio: false,
-  //   video: true,
-  // };
-
-  constructor() {
-    // this.ngVersion = `Angular! v${VERSION.full}`;
-  }
+  public liveStreamCameraInfo;
+  public selectedLiveStreamCamera;
+  public liveStreamCamUrl;
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-
+    this.getListOfSource();
   }
 
-  // initVideo(e) {
-  //   this.getMediaStream()
-  //     .then((stream) => {
-  //       this.stream = stream;
-  //       this.streaming = true;
-  //     })
-  //     .catch((err) => {
-  //       this.streaming = false;
-  //       this.error = err.message + ' (' + err.name + ':' + err.constraintName + ')';
-  //     });
-  // }
+  ngOnChanges() {
+    console.log('selectedLiveStreamCamera', this.selectedLiveStreamCamera);
+  }
 
-  // private getMediaStream(): Promise<MediaStream> {
+  getListOfSource() {
+    this.apiService.getListOfSources().subscribe( response => {
+      console.log('list of sources', response);
+      this.liveStreamCameraInfo = this.extractCameraInfo(response);
+      console.log('cam info', this.liveStreamCameraInfo);
+      this.selectedLiveStreamCamera = this.liveStreamCameraInfo[0].id;
+      this.getLiveStreamCameraId();
+    });
+  }
 
-  //   const videoConstraints = { video: true };
-  //   const video = this.video.nativeElement;
-  //   return new Promise<MediaStream>((resolve, reject) => {
-  //     // (get the stream)
-  //     return navigator.mediaDevices.
-  //       getUserMedia(videoConstraints)
-  //       .then(stream => {
-  //         (window as any).stream = stream; // make variable available to browser console
-  //         video.srcObject = stream;
-  //         // video.src = window.URL.createObjectURL(stream);
-  //         video.onloadedmetadata =  (e: any) => { };
-  //         video.play();
-  //         return resolve(stream);
-  //       })
-  //       .catch(err => reject(err));
-  //   });
-  // }
+  extractCameraInfo(response) {
+    return response.data.map((e) => {
+      return { id: e.awi_camid, name: e.awi_camera.location };
+    });
+  }
+
+  getLiveStreamCameraId() {
+    const port = parseInt( config.LIVE_STREAM_PORT, 10 ) + this.selectedLiveStreamCamera;
+    this.liveStreamCamUrl = config.LIVE_STREAM_CAMERA_URL + port;
+    console.log('livestrea', this.liveStreamCamUrl );
+  }
 
 }

@@ -11,6 +11,7 @@ export class PersonDataService {
   messages: Subject<any>;
 
   constructor(private wsService: WebsocketService) {
+    console.log('constructor')
     this.messages = wsService
       .connect()
       .pipe(map((response: any): any => {

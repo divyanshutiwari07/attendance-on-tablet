@@ -1,10 +1,18 @@
 .live-stream-container {
-    min-height: 600px;
+    // min-height: 600px;
     background-color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    div{
+    // display: flex;
+    .selectedCam{
+        margin-left: auto;
+        padding: 10px
+        
+    }
+
+    .live-stream{
+        min-height: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;    
         img{
             width: 400px;
             height: 300px;   
