@@ -1,25 +1,26 @@
-:host {
-    background-color: #fff;
-    display: block;
-}
+:host { 
+    background-color: #fff; 
+    // display: block; 
+} 
 .live-stream-container {
     // min-height: 600px;
     // display: flex;
     .selectedCam{
         margin-left: auto;
-        padding: 10px;
+        padding: 10px; 
+        width: 215px;
     }
 
-    .live-stream {
-        // min-height: 600px;
+    .live-stream { 
         display: flex;
         justify-content: center;
         align-items: center;    
-        padding: 0 30px;
-        img {
-            width: 100%;
-            min-height: 300px;
-            border: 1px solid;
+        padding: 0 30px; 
+        margin-top: 2em;
+        img { 
+            width: 80%;
+            min-height: 301px;
+            border: 1px solid; 
         }
     }
 }

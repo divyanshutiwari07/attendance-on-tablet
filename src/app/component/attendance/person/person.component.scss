@@ -1,14 +1,16 @@
-:host {
-  background-color: #fff;
-  display: block;
-}
+:host { 
+  background-color: #fff; 
+  display: block; 
+} 
 .person-container {
-  
+
+  display: flex;
   padding: 10px 30px;
   color: #4d4e4f;
   margin-bottom: 20px;
 
   .form-container {
+    flex: 2;
     min-height: 334px;
     form {
       width: 100%;
@@ -69,9 +71,43 @@
   }
 
   .waiting-container {
+    flex: 2;
     min-height: 334px;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .side-info {
+    display: flex;
+    .notification {
+      // background-color: #555;
+      // color: white;
+      // text-decoration: none;
+      // padding: 15px 26px;
+      // display: inline-block;
+      // border-radius: 2px;
+
+      vertical-align: sub;
+      position: relative;
+      span {
+        img{
+          height: 24px;
+        }
+      }
+      .badge {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        padding: 3px 6px;
+        border-radius: 50%;
+        background-color: red;
+        color: white;
+      }
+    }
+
+    .reject-detection {
+      padding-left: 15px;
+    }
   }
 }

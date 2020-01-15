@@ -16,6 +16,7 @@ import { MaterialModule } from './common/material/material.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { NotificationUpdateFilterPipe } from './common/filter/notification-update-filter';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { ToastrModule } from 'ngx-toastr';
     LoginComponent,
     HeaderComponent,
     AttendanceComponent,
+    NotificationUpdateFilterPipe
   ],
   imports: [
     NgbModule,
@@ -37,7 +39,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [ AuthGuard ],
+  providers: [ AuthGuard, NotificationUpdateFilterPipe ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

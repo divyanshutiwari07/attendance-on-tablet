@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, IterableDiffers, DoCheck } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { PersonDataService } from '../../../services/person-data.service';
 import PresentEmployeeListModel from '../../../models/present-employee-list-model';
@@ -11,7 +11,7 @@ import { NotificationService } from '../../../services/notification.service';
   templateUrl: './person.component.html',
   styleUrls: ['./person.component.scss']
 })
-export class PersonComponent implements OnInit {
+export class PersonComponent implements OnInit, DoCheck {
 
   public newPersonCame;
   public empRecord: any = {};
@@ -25,11 +25,23 @@ export class PersonComponent implements OnInit {
   public empIds;
   public empQueue = [];
   public getRegisteredUsersName: any = [];
+  public iterableDiffer;
 
   constructor(
     private apiService: ApiService,
     private personData: PersonDataService,
-    private notifyService: NotificationService) { }
+    private notifyService: NotificationService,
+    private iterableDiffers: IterableDiffers) {
+
+      // this.iterableDiffer = iterableDiffers.find([]).create(null);
+    }
+
+  ngDoCheck() {
+      // const changes = this.iterableDiffer.diff(this.empQueue);
+      // if (changes) {
+      //     console.log('Changes detected!');
+      // }
+  }
 
   ngOnInit() {
     this.startSocketConnection();
@@ -70,6 +82,7 @@ export class PersonComponent implements OnInit {
   }
 
   private getPresentEmpData() {
+    console.log('getpresentempdata');
     this.apiService.getPresentEmployeesForDate({start_time: this.startTime, end_time: this.endTime })
     .subscribe(
       response => {
@@ -164,6 +177,13 @@ export class PersonComponent implements OnInit {
       }
     });
 
+  }
+
+  public rejectDetection() {
+    console.log('rejected detection', );
+    // this.empRecord = {};
+    this.initForm();
+    this.showNextPersonInTheQueue();
   }
 
   private addToTheList(newPerson) {

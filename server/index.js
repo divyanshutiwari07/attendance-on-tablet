@@ -24,6 +24,8 @@ const newEmpCameInFrontOfCamera = require('./new-emp-data.json');
 const newEmpCameInFrontOfCameraOne = require('./new-emp-data.1.json');
 const newEmpCameInFrontOfCameraTwo = require('./new-emp-data.2.json');
 const newEmpCameInFrontOfCameraThree = require('./new-emp-data.3.json');
+const verifyLabel = require('./verify-label.json');
+const listOfSources = require('./list-of-sources.json');
 
 
 // app.listen(3000, () => {
@@ -69,16 +71,27 @@ app.post('/list_of_registered_users', (req, res, next) => {
 })
 
 app.get('/new_emp', (req, res, next) => {
-    console.log("=========== Serving list_of_registered_users =============");
+    console.log("=========== Serving new emp =============");
     res.json(newEmpCameInFrontOfCamera);
 })
 
 app.post('/login', (req, res, next) => {
     console.log(res.body);
-    console.log("=========== Serving list_of_registered_users =============");
+    console.log("=========== Serving login =============");
     res.json(login);
 })
 
+app.post('/verify', (req, res, next) => {
+    console.log(res.body);
+    console.log("=========== Serving verify label =============");
+    res.json(verifyLabel);
+})
+
+app.post('/list_of_sources', (req, res, next) => {
+    console.log(res.body);
+    console.log("=========== Serving list of sources =============");
+    res.json(listOfSources);
+})
 
 io.on("connection", socket => {
     // Log whenever a user connects
@@ -95,18 +108,22 @@ io.on("connection", socket => {
         // console.log("Message Received: " );
         //     io.emit("message", newEmpCameInFrontOfCamera);
         // }, 5000);
-        setTimeout(() => {
-            console.log("Message Received: " );
-            io.emit("message", newEmpCameInFrontOfCameraOne);
-        }, 7000);
+        // setTimeout(() => {
+        //     console.log("Message Received: " );
+        //     io.emit("message", newEmpCameInFrontOfCameraOne);
+        // }, 3000);
         setTimeout(() => {
             console.log("Message Received: " );
             io.emit("message", newEmpCameInFrontOfCameraTwo);
-        }, 10000);
-        // setTimeout(() => {
-        //     console.log("Message Received: " );
-        //     io.emit("message", newEmpCameInFrontOfCameraThree);
-        // }, 11000);
+        }, 5000);
+        setTimeout(() => {
+            console.log("Message Received: " );
+            io.emit("message", newEmpCameInFrontOfCameraThree);
+        }, 7000);
+        setTimeout(() => {
+            console.log("Message Received: " );
+            io.emit("message", newEmpCameInFrontOfCamera);
+        }, 9000);
       });
   
     
