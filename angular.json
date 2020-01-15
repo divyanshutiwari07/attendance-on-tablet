@@ -60,6 +60,24 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.local.ts"
+                }                
+              ],
+              "serviceWorker": true
+            },
+            "premise": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.premise.ts"
+                }                
+              ],
+              "serviceWorker": true
             }
           }
         },
@@ -71,6 +89,12 @@
           "configurations": {
             "production": {
               "browserTarget": "tablet-attendance:build:production"
+            },
+            "local": {
+              "browserTarget": "tablet-attendance:build:local"
+            },
+            "premise": {
+              "browserTarget": "tablet-attendance:build:premise"
             }
           }
         },
