@@ -115,7 +115,7 @@ io.on("connection", socket => {
         setTimeout(() => {
             console.log("Message Received: " );
             io.emit("message", newEmpCameInFrontOfCameraTwo);
-        }, 5000);
+        }, 1000);
         setTimeout(() => {
             console.log("Message Received: " );
             io.emit("message", newEmpCameInFrontOfCameraThree);

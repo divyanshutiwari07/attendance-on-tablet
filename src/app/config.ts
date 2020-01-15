@@ -5,22 +5,22 @@ const PORT = '3000';
 const _PORT = '4000';
 const LIVE_STREAM_PORT = '8000';
 
-// const SERVER_URL = 'http://192.168.0.80:';
-const SERVER_URL = WINDOW_HTTP + '//' + WINDOW_URL + ':';
+const SERVER_URL = 'http://192.168.0.80:';
+// const SERVER_URL = WINDOW_HTTP + '//' + WINDOW_URL + ':';
 
 // const devMode = 'ON_PREMISE';
-// let devMode = 'LOCALHOST';
-let devMode = 'PRODUCTION';
+let devMode = 'LOCALHOST';
+// let devMode = 'PRODUCTION';
 
 export const LOCAL_HOST_SERVER = 'http://localhost:' + PORT;
-// export const LOCAL_HOST_SERVER = 'http://192.168.0.94:' + PORT;
+// export const LOCAL_HOST_SERVER = 'http://192.168.1.4:' + PORT;
 
 export const SOCKET_EVENTS = {
-  NEW_SERVER_EVENT : devMode === 'PRODUCTION' ? 'new_event_occurred' : 'message',
-  USER_JOINED_EVENT : devMode === 'PRODUCTION' ? 'user_joined' : 'message'
+  // NEW_SERVER_EVENT : devMode === 'PRODUCTION' ? 'new_event_occurred' : 'message',
+  // USER_JOINED_EVENT : devMode === 'PRODUCTION' ? 'user_joined' : 'message'
 
-  // NEW_SERVER_EVENT : devMode === 'ON_PREMISE' ? 'new_event_occurred' : 'message',
-  // USER_JOINED_EVENT : devMode === 'ON_PREMISE' ? 'user_joined' : 'message'
+  NEW_SERVER_EVENT : devMode === 'ON_PREMISE' ? 'new_event_occurred' : 'message',
+  USER_JOINED_EVENT : devMode === 'ON_PREMISE' ? 'user_joined' : 'message'
 };
 
 const configs = {
@@ -63,5 +63,13 @@ const configs = {
   }
 };
 
-
 export const config = configs[devMode];
+
+// import * as LOCAL_CONFIG from './configs/config.local';
+// import * as PREMISE_CONFIG from './configs/config.premise';
+// import * as PROD_CONFIG from './configs/config.prod';
+
+// console.log( "Getting environement variable here =================", process.env );
+
+// const mode = 'LOCAL';
+// export const config = {...LOCAL_CONFIG};
