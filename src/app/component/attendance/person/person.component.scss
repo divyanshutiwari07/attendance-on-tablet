@@ -43,9 +43,22 @@
         vertical-align: middle;
       }
   
-      label {
+      // label {
+      //   margin: 0;
+      //   padding-bottom: 6px;
+      // }
+
+      .select-name-class {
         margin: 0;
-        padding-bottom: 6px;
+        padding-top: 6px;
+      }
+
+      .is-recognized-false {
+        color: #a5afb9;
+      }
+
+      .is-recognized-true {
+        color: #a5afb9;
       }
 
       button{
@@ -97,20 +110,24 @@
       }
       .badge {
         position: absolute;
-        top: -10px;
-        right: -10px;
-        padding: 3px 6px;
+        top: -9px;
+        right: -12px;
+        padding: 5px 7px;
         border-radius: 50%;
         background-color: red;
         color: white;
       }
     }
 
-    .reject-detection {
-      img {
-        width: 24px;
-      }
-      padding-left: 15px;
+    .reject{
+      padding-left:18px;
     }
+
+    // .reject-detection {
+    //   img {
+    //     width: 24px;
+    //   }
+    //   padding-left: 15px;
+    // }
   }
 }

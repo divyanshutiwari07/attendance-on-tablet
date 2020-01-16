@@ -41,7 +41,7 @@ export class LiveStreamComponent implements OnInit, OnChanges {
   getLiveStreamCameraId() {
     const port = parseInt( config.LIVE_STREAM_PORT, 10 ) + this.selectedLiveStreamCamera;
     this.liveStreamCamUrl = config.LIVE_STREAM_CAMERA_URL + port;
-    console.log('livestrea', this.liveStreamCamUrl );
+    console.log('livestream', this.liveStreamCamUrl );
   }
 
 }
