@@ -1,4 +1,4 @@
-import { Component, OnInit, IterableDiffers, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { PersonDataService } from '../../../services/person-data.service';
 import PresentEmployeeListModel from '../../../models/present-employee-list-model';
@@ -11,7 +11,7 @@ import { NotificationService } from '../../../services/notification.service';
   templateUrl: './person.component.html',
   styleUrls: ['./person.component.scss']
 })
-export class PersonComponent implements OnInit, DoCheck {
+export class PersonComponent implements OnInit {
 
   public newPersonCame;
   public empRecord: any = {};
@@ -30,18 +30,9 @@ export class PersonComponent implements OnInit, DoCheck {
   constructor(
     private apiService: ApiService,
     private personData: PersonDataService,
-    private notifyService: NotificationService,
-    private iterableDiffers: IterableDiffers) {
-
-      // this.iterableDiffer = iterableDiffers.find([]).create(null);
+    private notifyService: NotificationService) {
     }
 
-  ngDoCheck() {
-      // const changes = this.iterableDiffer.diff(this.empQueue);
-      // if (changes) {
-      //     console.log('Changes detected!');
-      // }
-  }
 
   ngOnInit() {
     this.startSocketConnection();

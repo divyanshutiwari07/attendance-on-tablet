@@ -4,9 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:premise": "ng serve -c premise",
-    "start:local": "ng serve -c local",
-    "device": "ng serve --host 0.0.0.0",
+    "start:premise": "ng serve -o -c premise",
+    "start:local": "ng serve -o -c local",
+    "start:device": "ng serve -o --host 0.0.0.0",
     "build": "ng build",
     "build:prod": "ng build -c production",
     "test": "ng test",
@@ -15,7 +15,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^8.2.14",
+    "@angular/animations": "^8.2.14", 
     "@angular/cdk": "~8.2.3",
     "@angular/common": "~8.2.9",
     "@angular/compiler": "~8.2.9",
