@@ -5,6 +5,7 @@ import PresentEmployeeListModel from '../../../models/present-employee-list-mode
 import PresentNewEmployeeModel from '../../../models/present-new-employee-model';
 import { isNullOrUndefined } from 'util';
 import { NotificationService } from '../../../services/notification.service';
+import { AuthGuard } from 'src/app/shared/guard';
 
 @Component({
   selector: 'app-person',
@@ -30,7 +31,8 @@ export class PersonComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private personData: PersonDataService,
-    private notifyService: NotificationService) {
+    private notifyService: NotificationService,
+    private auth: AuthGuard) {
     }
 
 
@@ -52,6 +54,9 @@ export class PersonComponent implements OnInit {
     this.apiService.getListOfRegisteredUsers()
     .subscribe(
       response => {
+        if ( response.success === false && response.msg === 'Un-Authorized Access, expired session') {
+          this.auth.logOut();
+        }
         console.log('registered users data', response);
         this.getRegisteredUsersName = this.getListOfRegisteredUsersName(response.data);
         console.log('list object', this.getRegisteredUsersName);
@@ -77,6 +82,9 @@ export class PersonComponent implements OnInit {
     this.apiService.getPresentEmployeesForDate({start_time: this.startTime, end_time: this.endTime })
     .subscribe(
       response => {
+        if ( response.success === false && response.msg === 'Un-Authorized Access, expired session') {
+          this.auth.logOut();
+        }
         console.log('prestn emp data', response);
         this.empListObj = PresentEmployeeListModel.ModelMap(response);
         this.empIds = this.empListObj.presentEmpIds;

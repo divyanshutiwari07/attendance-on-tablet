@@ -10,6 +10,7 @@
   margin-bottom: 20px;
 
   .form-container {
+    padding-top: 10px;
     flex: 2;
     min-height: 334px;
     form {
@@ -101,17 +102,19 @@
       // display: inline-block;
       // border-radius: 2px;
 
-      vertical-align: sub;
+      display: flex;
+      align-items: flex-end;
       position: relative;
       span {
         img{
-          height: 24px;
+          vertical-align: sub;
+          height: 20px;
         }
       }
       .badge {
         position: absolute;
-        top: -9px;
-        right: -12px;
+        top: -8px;
+        right: -10px;
         padding: 5px 7px;
         border-radius: 50%;
         background-color: red;
