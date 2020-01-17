@@ -1,6 +1,8 @@
 import { Component, OnInit, OnChanges} from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { config } from '../../../config';
+import { isNullOrUndefined } from 'util';
+import { AuthGuard } from 'src/app/shared/guard';
 
 @Component({
   selector: 'app-live-stream',
@@ -12,7 +14,7 @@ export class LiveStreamComponent implements OnInit, OnChanges {
   public liveStreamCameraInfo;
   public selectedLiveStreamCamera;
   public liveStreamCamUrl;
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private auth: AuthGuard) { }
 
   ngOnInit() {
     this.getListOfSource();
@@ -24,18 +26,29 @@ export class LiveStreamComponent implements OnInit, OnChanges {
 
   getListOfSource() {
     this.apiService.getListOfSources().subscribe( response => {
+      if ( response.success === false && response.msg === 'Un-Authorized Access, expired session') {
+        this.auth.logOut();
+      }
       console.log('list of sources', response);
       this.liveStreamCameraInfo = this.extractCameraInfo(response);
       console.log('cam info', this.liveStreamCameraInfo);
-      this.selectedLiveStreamCamera = this.liveStreamCameraInfo[0].id;
-      this.getLiveStreamCameraId();
+      if ( this.liveStreamCameraInfo ) {
+        this.selectedLiveStreamCamera = this.liveStreamCameraInfo[0].id;
+        this.getLiveStreamCameraId();
+      }
     });
   }
 
   extractCameraInfo(response) {
-    return response.data.map((e) => {
-      return { id: e.awi_camid, name: e.awi_camera.location };
-    });
+    if (isNullOrUndefined(response) || response.success === false) {
+      console.log('no list of sources');
+      return '';
+    } else {
+      console.log('else')
+      return response.data.map((e) => {
+        return { id: e.awi_camid, name: e.awi_camera.location };
+      });
+    }
   }
 
   getLiveStreamCameraId() {
