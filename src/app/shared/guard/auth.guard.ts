@@ -22,10 +22,19 @@ export class AuthGuard implements CanActivate {
 
     logOut() {
         localStorage.removeItem('token');
+        if ( isNullOrUndefined(localStorage.getItem('token')) ) {
+            this.router.navigate(['/login']);
+        }
     }
 
     logIn(token) {
         localStorage.setItem('token', token);
-        this.router.navigateByUrl('/attendance');
+        if ( !isNullOrUndefined(localStorage.getItem('token')) ) {
+            this.router.navigateByUrl('/attendance');
+        }
+    }
+    
+    handleSession(response) {
+        return ( !response.success && response.msg === 'Un-Authorized Access, expired session' );
     }
 }

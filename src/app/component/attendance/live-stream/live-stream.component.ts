@@ -26,9 +26,6 @@ export class LiveStreamComponent implements OnInit, OnChanges {
 
   getListOfSource() {
     this.apiService.getListOfSources().subscribe( response => {
-      if ( response.success === false && response.msg === 'Un-Authorized Access, expired session') {
-        this.auth.logOut();
-      }
       console.log('list of sources', response);
       this.liveStreamCameraInfo = this.extractCameraInfo(response);
       console.log('cam info', this.liveStreamCameraInfo);
