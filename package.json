@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -o --port 4300",
+    "start": "npm run start:premise",
     "start:premise": "ng serve -o --port 4300 -c premise",
     "start:local": "ng serve -o --port 4300 -c local",
     "start:device": "ng serve -o --port 4300 -c premise --host 0.0.0.0",
