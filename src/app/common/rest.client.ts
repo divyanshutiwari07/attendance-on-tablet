@@ -37,11 +37,11 @@ export class RestClient {
 
     // final
 
-    get(url: string, payload: Object = null, token = null): Observable<any>{
+    get(url: string, payload: Object = null, token = null): Observable<any> {
         return Observable.create((observer: Observer<any>) => {
             if (isNullOrUndefined(payload)) {
                 this.http.get(url, this.getHttpOptions()).subscribe(response => {
-                    if ( this.auth.handleSession(<any>response) ) {
+                    if ( this.auth.handleSession(response as any) ) {
                         this.auth.logOut();
                     } else {
                         observer.next(response);
@@ -49,7 +49,7 @@ export class RestClient {
                 });
             } else {
                 return this.http.post(url, payload, this.getHttpOptions()).subscribe(response => {
-                    if ( this.auth.handleSession(<any>response) ) {
+                    if ( this.auth.handleSession(response as any) ) {
                         this.auth.logOut();
                     } else {
                         observer.next(response);
