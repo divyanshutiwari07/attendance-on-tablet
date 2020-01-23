@@ -6,6 +6,7 @@ import PresentNewEmployeeModel from '../../../models/present-new-employee-model'
 import { isNullOrUndefined } from 'util';
 import { NotificationService } from '../../../services/notification.service';
 import { AuthGuard } from 'src/app/shared/guard';
+import * as Utils from '../../../common/utils';
 
 @Component({
   selector: 'app-person',
@@ -17,7 +18,10 @@ export class PersonComponent implements OnInit {
   public newPersonCame;
   public empRecord: any = {};
   public person = {
-    name: '',
+    name: {
+      name: '',
+      id: 0
+    },
     isRecognized: true,
   };
   private startTime: number;
@@ -26,13 +30,14 @@ export class PersonComponent implements OnInit {
   public empIds;
   public empQueue = [];
   public getRegisteredUsersName: any = [];
-  public iterableDiffer;
+  private todaysDate;
 
   constructor(
     private apiService: ApiService,
     private personData: PersonDataService,
     private notifyService: NotificationService,
     private auth: AuthGuard) {
+      this.todaysDate = new Date();
     }
 
 
@@ -68,9 +73,12 @@ export class PersonComponent implements OnInit {
       return [];
     }
 
-    const getRegisteredUsersName = res.map((a) => a.awi_label);
-    return getRegisteredUsersName.map((d) => {
-      return  {name: d };
+    // const getRegisteredUsersName = res.map((a) => a.awi_label);
+    // return getRegisteredUsersName.map((d) => {
+    //   return  {name: d,};
+    // });
+    return res.map((a) => {
+      return  {name: a.awi_label, id: a.awi_id};
     });
   }
 
@@ -139,44 +147,66 @@ export class PersonComponent implements OnInit {
   public onVerify() {
     console.log('Verified');
     console.log(this.person);
+    this.initForm();
+    this.showNextPersonInTheQueue();
+    this.addToTheList(this.empRecord);
     // tslint:disable-next-line:max-line-length
-    this.apiService.verifyEmployeePresence({'id' : this.empRecord.alertId, 'blob_id': this.empRecord.blobId, 'awi_label': this.empRecord.name}).subscribe( response => {
-      console.log('verify emp presence', response);
-      if ( response.success === true ) {
-        this.successToaster('Verify Successfully !');
-        this.addToTheList(this.empRecord);
-        this.initForm();
-        this.showNextPersonInTheQueue();
-      } else {
-        this.errorToaster(response.msg);
-      }
-    });
-
+    // this.apiService.verifyEmployeePresence({'id' : this.empRecord.alertId, 'blob_id': this.empRecord.blobId, 'awi_label': this.empRecord.name}).subscribe( response => {
+    //   console.log('verify emp presence', response);
+    //   if ( response.success === true ) {
+    //     this.successToaster('Verify Successfully !');
+    //     this.addToTheList(this.empRecord);
+    //     this.initForm();
+    //     this.showNextPersonInTheQueue();
+    //   } else {
+    //     this.errorToaster(response.msg);
+    //   }
+    // });
   }
 
   public onSubmit() {
     console.log('Submitted');
-    console.log(this.person);
+    console.log('person', this.person.name);
+    // console.log('person', this.person.name.name);
     // tslint:disable-next-line:max-line-length
-    this.apiService.verifyEmployeePresence({'id' : this.empRecord.alertId, 'blob_id': this.empRecord.blobId, 'awi_label': this.person.name}).subscribe( response => {
-      console.log('verify emp presence', response);
-      if ( response.success === true ) {
-        this.successToaster(response.msg);
-        this.addToTheList(this.empRecord);
-        this.initForm();
-        this.showNextPersonInTheQueue();
-      } else {
-        this.errorToaster(response.msg);
-      }
-    });
-
+    if ( this.person.name ) {
+      // tslint:disable-next-line:max-line-length
+      this.apiService.verifyEmployeePresence({id : this.empRecord.alertId, blob_id: this.empRecord.blobId, awi_label: this.person.name.name}).subscribe( response => {
+        console.log('verify emp presence', response);
+        if ( response.success === true ) {
+          this.successToaster(response.msg);
+          this.addToTheList(this.person.name);
+          this.initForm();
+          this.showNextPersonInTheQueue();
+        } else {
+          this.errorToaster(response.msg);
+        }
+      });
+    } else {
+      this.infoToaster('Select Your Name');
+    }
   }
 
   public rejectDetection() {
     console.log('rejected detection', );
-    // this.empRecord = {};
-    this.initForm();
-    this.showNextPersonInTheQueue();
+    console.log('emp', this.empRecord);
+    const startTime = Utils.getStartTimeStampOfGivenDate(this.todaysDate);
+    const endTime = Utils.getCurrentTimeStampOfGivenDate( this.todaysDate );
+    console.log('name', this.empRecord.name, 'starttime', startTime, 'endTime', endTime);
+    this.apiService.rejectEmpAttendance({start_time: startTime, end_time: endTime, awi_label: this.empRecord.name})
+      .subscribe(
+        response => {
+          console.log('rejectDatarespone' , response);
+          if ( response.success ) {
+            this.successToaster(response.msg);
+            this.initForm();
+            this.showNextPersonInTheQueue();
+
+          } else {
+            this.errorToaster(response.msg);
+          }
+        }
+      );
   }
 
   private addToTheList(newPerson) {
@@ -201,7 +231,10 @@ export class PersonComponent implements OnInit {
 
   public initForm() {
       this.person = {
-        name: '',
+        name: {
+          name: '',
+          id: 0
+        },
         isRecognized: true
       };
       this.newPersonCame = false;
@@ -215,4 +248,7 @@ export class PersonComponent implements OnInit {
     this.notifyService.showError(message,  '');
   }
 
+  infoToaster(message: string) {
+    this.notifyService.showInfo(message,  '');
+  }
 }

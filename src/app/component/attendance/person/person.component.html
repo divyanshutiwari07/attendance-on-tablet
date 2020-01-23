@@ -66,7 +66,7 @@
                           <select class="form-control" #name="ngModel" name="name"
                           [(ngModel)]="person.name" [disabled]="person.isRecognized"  required>
                             <option value="">Select Your Name</option>
-                            <option *ngFor="let a of getRegisteredUsersName;let i = index" [ngValue]="a.name">{{ a.name }}</option>
+                            <option *ngFor="let a of getRegisteredUsersName;let i = index" [ngValue]="a">{{ a.name }}</option>
                           </select>
                           <!-- <input type="text" #name="ngModel" [(ngModel)]="person.name" class="form-control" name="name" [disabled]="person.isRecognized" placeholder="Enter your name"> -->
                       </div>

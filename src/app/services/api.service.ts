@@ -34,4 +34,8 @@ export class ApiService {
     return this.http.get(config.LIST_OF_SOURCES_URL, {});
   }
 
+  rejectEmpAttendance(obj): Observable <any> {
+    return this.http.get(config.REJECT_ATTENDANCE_URL, obj);
+  }
+
 }

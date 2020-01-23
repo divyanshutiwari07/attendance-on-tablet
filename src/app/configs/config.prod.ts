@@ -5,15 +5,16 @@ import * as COMMON from './config.common';
 const WINDOW_HTTP = location.protocol;
 const WINDOW_URL = location.hostname;
 const SERVER_URL = WINDOW_HTTP + '//' + WINDOW_URL + ':';
-const SOCKET_PORT = "3000";
+const SOCKET_PORT = '3000';
 
 const API_URLS = {
     LOGIN_URL : SERVER_URL + COMMON.API_PORT + '/awiros_ms/attendence/api/login',
     TODAYS_ATTENDANCE : SERVER_URL + COMMON.API_PORT + '/awiros_ms/attendence/api/console_data',
     LIST_OF_REGISTER_URL : SERVER_URL + COMMON.API_PORT + '/awiros_ms/attendence/api/list_of_registered_users',
     VERIFY_EMPLOYEE_PRESENCE_URL: SERVER_URL + COMMON.API_PORT + '/awiros_ms/attendence/api/update_label',
-    LIST_OF_SOURCES_URL: SERVER_URL + COMMON.API_PORT + '/awiros_ms/attendence/api/list_of_sources'
-}
+    LIST_OF_SOURCES_URL: SERVER_URL + COMMON.API_PORT + '/awiros_ms/attendence/api/list_of_sources',
+    REJECT_ATTENDANCE_URL : SERVER_URL + COMMON.API_PORT + '/awiros_ms/attendence/api/reject_user_attendence'
+};
 
 export const config = {
     SERVER_ADDRESS_REALTIME : WINDOW_HTTP + '//' + WINDOW_URL + ':' + SOCKET_PORT,

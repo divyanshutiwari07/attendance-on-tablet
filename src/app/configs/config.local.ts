@@ -13,5 +13,6 @@ export const config = {
     TODAYS_ATTENDANCE : LOCAL_HOST_SERVER + '/employee-attendance',
     LIST_OF_REGISTER_URL : LOCAL_HOST_SERVER + '/list_of_registered_users',
     VERIFY_EMPLOYEE_PRESENCE_URL: LOCAL_HOST_SERVER + '/verify',
-    LIST_OF_SOURCES_URL: LOCAL_HOST_SERVER + '/list_of_sources'
+    LIST_OF_SOURCES_URL: LOCAL_HOST_SERVER + '/list_of_sources',
+    REJECT_ATTENDANCE_URL : LOCAL_HOST_SERVER  + '/rejectAttendance'
 }

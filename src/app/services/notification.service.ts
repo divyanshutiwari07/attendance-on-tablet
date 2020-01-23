@@ -17,9 +17,19 @@ export class NotificationService {
     });
 
   }
-  showError(message, title) {
 
+  showError(message, title) {
     this.toastr.error(message, title , {
+      timeOut : 2000,
+      closeButton: true,
+      // enableHtml: true,
+      positionClass: 'toast-top-center'
+    });
+
+  }
+
+  showInfo(message, title) {
+    this.toastr.info(message, title , {
       timeOut : 2000,
       closeButton: true,
       // enableHtml: true,

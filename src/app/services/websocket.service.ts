@@ -48,5 +48,9 @@ export class WebsocketService {
     return Rx.Subject.create(observer, observable);
   }
 
+  disconnectSocksdet() {
+    console.log('dissconnet');
+    this.socket.disconnect();
+  }
 
 }
