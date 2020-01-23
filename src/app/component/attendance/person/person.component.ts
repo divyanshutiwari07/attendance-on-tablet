@@ -111,7 +111,7 @@ export class PersonComponent implements OnInit {
       // console.log('checknewperson' , newPerson);
       const index = this.empQueue.findIndex((e) => e.id === newPerson.id);
 
-      if (index === -1 && newPerson.name !== 'Unrecognized') {
+      if (index === -1 && newPerson.name !== 'Unrecognized' && newPerson.id !== this.empRecord.id ) {
       // if (index === -1) {
           this.empQueue.push(newPerson);
       } else {
@@ -127,29 +127,13 @@ export class PersonComponent implements OnInit {
     );
   }
 
-  // private extractDataForNewEmp(res) {
-
-  //   const row = {name: null, inTime: null, outTime: null, location: null, department: null , photo: null,  id: 0};
-  //   const dynamicKey = res.data.awi_facial_recognition.awi_app_data.awi_blobs.awi_blob_ids[0];
-
-  //   row.department = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_subclass;
-
-  //   row.inTime = res.data.timestamp;
-  //   row.outTime = res.data.timestamp;
-  //   row.location = res.data.awi_facial_recognition.location;
-
-  //   row.name = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_label;
-
-  //   row.id = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_id;
-  //   return row;
-  // }
-
   public onVerify() {
     console.log('Verified');
     console.log(this.person);
     this.initForm();
-    this.showNextPersonInTheQueue();
     this.addToTheList(this.empRecord);
+    this.showNextPersonInTheQueue();
+    
     // tslint:disable-next-line:max-line-length
     // this.apiService.verifyEmployeePresence({'id' : this.empRecord.alertId, 'blob_id': this.empRecord.blobId, 'awi_label': this.empRecord.name}).subscribe( response => {
     //   console.log('verify emp presence', response);
@@ -169,7 +153,7 @@ export class PersonComponent implements OnInit {
     console.log('person', this.person.name);
     // console.log('person', this.person.name.name);
     // tslint:disable-next-line:max-line-length
-    if ( this.person.name ) {
+    if ( this.person.name.name ) {
       // tslint:disable-next-line:max-line-length
       this.apiService.verifyEmployeePresence({id : this.empRecord.alertId, blob_id: this.empRecord.blobId, awi_label: this.person.name.name}).subscribe( response => {
         console.log('verify emp presence', response);

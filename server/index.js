@@ -26,6 +26,7 @@ const newEmpCameInFrontOfCameraTwo = require('./new-emp-data.2.json');
 const newEmpCameInFrontOfCameraThree = require('./new-emp-data.3.json');
 const verifyLabel = require('./verify-label.json');
 const listOfSources = require('./list-of-sources.json');
+const rejectAttendance = require('./reject-attendance.json');
 
 
 // app.listen(3000, () => {
@@ -85,7 +86,13 @@ app.post('/verify', (req, res, next) => {
     console.log(res.body);
     console.log("=========== Serving verify label =============");
     res.json(verifyLabel);
-})
+});
+app.post('/rejectAttendance', (req, res, next) => {
+    console.log(res.body);
+    console.log("=========== rejectAttendance =============");
+    res.json(rejectAttendance);
+});
+
 
 app.post('/list_of_sources', (req, res, next) => {
     console.log(res.body);
@@ -115,11 +122,11 @@ io.on("connection", socket => {
         setInterval(() => {
             console.log("Message Received: " );
             io.emit("message", newEmpCameInFrontOfCameraTwo);
-        }, 1000);
-        // setTimeout(() => {
-        //     console.log("Message Received: " );
-        //     io.emit("message", newEmpCameInFrontOfCameraThree);
-        // }, 3000);
+        }, 5000);
+        setTimeout(() => {
+            console.log("Message Received: " );
+            io.emit("message", newEmpCameInFrontOfCameraThree);
+        }, 3000);
         // setTimeout(() => {
         //     console.log("Message Received: " );
         //     io.emit("message", newEmpCameInFrontOfCamera);
