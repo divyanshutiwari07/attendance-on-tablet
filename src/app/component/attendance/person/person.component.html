@@ -42,7 +42,7 @@
                         <input type="radio" name="recognized" [(ngModel)]="person.isRecognized" (click)="person.name = ''" [value]="true" checked> Is this {{empRecord.name}} ?          
                       </label> -->
 
-                        <input type="radio" name="recognized" [(ngModel)]="person.isRecognized" (click)="person.name = ''" [value]="true" checked> <span class=" {{ person.isRecognized === false ? 'is-recognized-true' : '' }} " > Is this {{empRecord.name}} ? </span> 
+                        <input type="radio" name="recognized" [(ngModel)]="person.isRecognized" (click)="person.name.name = ''" [value]="true" checked> <span class=" {{ person.isRecognized === false ? 'is-recognized-true' : '' }} " > Is this {{empRecord.name}} ? </span> 
 
                     </div>
                     <div >

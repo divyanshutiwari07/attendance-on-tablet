@@ -23,6 +23,7 @@ export class AuthGuard implements CanActivate {
 
     logOut() {
         localStorage.removeItem('token');
+        this.wsService.disconnectSocksdet();
         if ( isNullOrUndefined(localStorage.getItem('token')) ) {
             this.router.navigate(['/login']);
         }
@@ -30,7 +31,6 @@ export class AuthGuard implements CanActivate {
 
     logIn(token) {
         localStorage.setItem('token', token);
-        this.wsService.disconnectSocksdet();
         if ( !isNullOrUndefined(localStorage.getItem('token')) ) {
             this.router.navigateByUrl('/attendance');
         }

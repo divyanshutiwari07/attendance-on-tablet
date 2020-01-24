@@ -123,7 +123,7 @@ io.on("connection", socket => {
             console.log("Message Received: " );
             io.emit("message", newEmpCameInFrontOfCameraTwo);
         }, 5000);
-        setTimeout(() => {
+        setInterval(() => {
             console.log("Message Received: " );
             io.emit("message", newEmpCameInFrontOfCameraThree);
         }, 3000);

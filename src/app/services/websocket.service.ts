@@ -27,7 +27,7 @@ export class WebsocketService {
     console.log('address', config.SERVER_ADDRESS_REALTIME);
 
     this.socket = io(config.SERVER_ADDRESS_REALTIME);
-    //this.socket = io('http://192.168.0.21:3000');
+    // this.socket = io('http://192.168.0.21:3000');
 
     const observable = new Observable(observer => {
         this.socket.on(SOCKET_EVENTS.NEW_SERVER_EVENT, (data) => {

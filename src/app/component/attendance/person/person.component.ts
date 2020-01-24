@@ -111,11 +111,13 @@ export class PersonComponent implements OnInit {
       // console.log('checknewperson' , newPerson);
       const index = this.empQueue.findIndex((e) => e.id === newPerson.id);
 
-      if (index === -1 && newPerson.name !== 'Unrecognized' && newPerson.id !== this.empRecord.id ) {
+      // tslint:disable-next-line:max-line-length
+      if (index === -1 && newPerson.name !== 'Unrecognized' && newPerson.id !== this.empRecord.id && this.empIds.indexOf( newPerson.id ) === -1 ) {
       // if (index === -1) {
           this.empQueue.push(newPerson);
       } else {
           // this.empQueue[index] = newPerson;
+          console.log('emp already present line 120');
       }
       console.log('Queue Status', this.empQueue);
       if ( !Object.keys(this.empRecord).length ) {
@@ -130,10 +132,10 @@ export class PersonComponent implements OnInit {
   public onVerify() {
     console.log('Verified');
     console.log(this.person);
-    this.initForm();
     this.addToTheList(this.empRecord);
+    this.initForm();
     this.showNextPersonInTheQueue();
-    
+
     // tslint:disable-next-line:max-line-length
     // this.apiService.verifyEmployeePresence({'id' : this.empRecord.alertId, 'blob_id': this.empRecord.blobId, 'awi_label': this.empRecord.name}).subscribe( response => {
     //   console.log('verify emp presence', response);
@@ -151,21 +153,24 @@ export class PersonComponent implements OnInit {
   public onSubmit() {
     console.log('Submitted');
     console.log('person', this.person.name);
-    // console.log('person', this.person.name.name);
-    // tslint:disable-next-line:max-line-length
+
     if ( this.person.name.name ) {
-      // tslint:disable-next-line:max-line-length
-      this.apiService.verifyEmployeePresence({id : this.empRecord.alertId, blob_id: this.empRecord.blobId, awi_label: this.person.name.name}).subscribe( response => {
-        console.log('verify emp presence', response);
-        if ( response.success === true ) {
-          this.successToaster(response.msg);
-          this.addToTheList(this.person.name);
-          this.initForm();
-          this.showNextPersonInTheQueue();
-        } else {
-          this.errorToaster(response.msg);
-        }
-      });
+      if ( this.checkEmpAlreadyPresent(this.person.name.id ) ) {
+        this.successToaster(this.person.name.name + ' Already Present!');
+      } else {
+        // tslint:disable-next-line:max-line-length
+        this.apiService.verifyEmployeePresence({id : this.empRecord.alertId, blob_id: this.empRecord.blobId, awi_label: this.person.name.name}).subscribe( response => {
+          console.log('verify emp presence', response);
+          if ( response.success === true ) {
+            this.successToaster(response.msg);
+            this.addToTheList(this.person.name);
+            this.initForm();
+            this.showNextPersonInTheQueue();
+          } else {
+            this.errorToaster(response.msg);
+          }
+        });
+      }
     } else {
       this.infoToaster('Select Your Name');
     }
@@ -196,6 +201,15 @@ export class PersonComponent implements OnInit {
   private addToTheList(newPerson) {
     this.empIds.push(newPerson.id);
     console.log('addToTheList called: new Emp Ids', this.empIds);
+  }
+
+  private checkEmpAlreadyPresent(newId) {
+    if ( this.empIds ) {
+      return this.empIds.includes(newId);
+    } else {
+      console.log('check emp already present ');
+      return false;
+    }
   }
 
   public showNextPersonInTheQueue() {
