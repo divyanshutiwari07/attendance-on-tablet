@@ -249,4 +249,5 @@ export class PersonComponent implements OnInit {
   infoToaster(message: string) {
     this.notifyService.showInfo(message,  '');
   }
+
 }

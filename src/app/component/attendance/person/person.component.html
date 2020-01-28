@@ -8,7 +8,7 @@
             </h3>
             <div class="side-info" *ngIf="newPersonCame">              
               <a data-toggle="tooltip" data-placement="left" ngbTooltip="Waiting Employees " class="notification">
-                  <span><img src="assets/group-icon.png"/></span>
+                  <span><img src="assets/group-icon.png" /></span>
                   <span class="badge">{{ empQueue?.length}}</span>
               </a>
               <a class="reject">
@@ -23,7 +23,7 @@
         <div class="row">
           <div class="col-md-12 user">
             <div class="avatar coulmn">
-              <img src={{empRecord.photo}} alt="Avatar"> 
+              <img src={{empRecord.photo}} alt='error_404' onerror="src='assets/error_404.png';"  > 
             </div>
             <div class="coulmn">
               <div >Time of Entrance: </div> <span> {{empRecord.inTime | date: 'yyyy/MM/dd h:mm:ss a'}} </span>

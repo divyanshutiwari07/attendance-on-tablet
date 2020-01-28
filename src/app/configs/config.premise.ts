@@ -1,6 +1,6 @@
 import * as COMMON from './config.common';
 
-const SERVER_URL = 'http://192.168.0.80' + ':';
+const SERVER_URL = 'http://192.168.0.22' + ':';
 
 const API_URLS = {
     LOGIN_URL : SERVER_URL + COMMON.API_PORT + '/awiros_ms/attendence/api/login',
@@ -12,10 +12,10 @@ const API_URLS = {
 };
 
 export const config = {
-    SERVER_ADDRESS_REALTIME : 'http://192.168.0.80:3000',
-    SERVER_ADDRESS : '192.168.0.80',
+    SERVER_ADDRESS_REALTIME : 'http://192.168.0.22:3000',
+    SERVER_ADDRESS : '192.168.0.22',
     PORT : COMMON.ASSET_PORT,
-    LIVE_STREAM_CAMERA_URL: 'http://192.168.0.80:',
+   LIVE_STREAM_CAMERA_URL: 'http://192.168.0.22:',
     LIVE_STREAM_PORT: COMMON.LIVE_STREAM_PORT,
     ...API_URLS
 };
