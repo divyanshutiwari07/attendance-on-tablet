@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
             this.auth.logIn(loginRes.token );
             this.successToaster(loginRes.msg);
         } else {
-            alert(loginRes.msg);
             this.errorToaster(loginRes.msg);
         }
     });

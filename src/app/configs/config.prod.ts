@@ -23,4 +23,5 @@ export const config = {
     LIVE_STREAM_CAMERA_URL: WINDOW_HTTP + '//' + WINDOW_URL + ':',
     LIVE_STREAM_PORT: COMMON.LIVE_STREAM_PORT,
     ...API_URLS
-}
+};
+
