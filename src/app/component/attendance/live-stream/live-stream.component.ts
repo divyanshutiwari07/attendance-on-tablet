@@ -38,10 +38,8 @@ export class LiveStreamComponent implements OnInit, OnChanges {
 
   extractCameraInfo(response) {
     if (isNullOrUndefined(response) || response.success === false) {
-      console.log('no list of sources');
       return '';
     } else {
-      console.log('else')
       return response.data.map((e) => {
         return { id: e.awi_camid, name: e.awi_camera.location };
       });
