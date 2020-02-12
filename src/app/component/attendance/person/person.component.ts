@@ -60,13 +60,13 @@ export class PersonComponent implements OnInit {
     .subscribe(
       response => {
         console.log('registered users data', response);
-        this.getRegisteredUsersName = this.getListOfRegisteredUsersName(response.data);
+        this.getRegisteredUsersName = this.getListOfRegisteredUsersDetails(response.data);
         console.log('list object', this.getRegisteredUsersName);
       }
     );
   }
 
-  private getListOfRegisteredUsersName(res) {
+  private getListOfRegisteredUsersDetails(res) {
     if (isNullOrUndefined(res) || res.success === false) {
       // this.errorToaster(res.msg);
       console.log('no registered users data found');
@@ -107,14 +107,15 @@ export class PersonComponent implements OnInit {
     this.personData.messages.subscribe(data => {
       console.log('new person ', data);
       const newPerson = PresentNewEmployeeModel.ModelMap(data).presentEmployee;
-      // const newPerson = this.extractDataForNewEmp(data);
-      // console.log('checknewperson' , newPerson);
       const index = this.empQueue.findIndex((e) => e.id === newPerson.id);
 
       // tslint:disable-next-line:max-line-length
       if (index === -1 && newPerson.name !== 'Unrecognized' && newPerson.id !== this.empRecord.id && this.empIds.indexOf( newPerson.id ) === -1 ) {
       // if (index === -1) {
-          this.empQueue.push(newPerson);
+          // console.log('registerdata', )
+          if ( this.checkEmpIsRegistered(newPerson.id) ) {
+            this.empQueue.push(newPerson);
+          }
       } else {
           // this.empQueue[index] = newPerson;
           console.log('emp already present line 120');
@@ -127,6 +128,10 @@ export class PersonComponent implements OnInit {
       console.log('error', error);
   }
     );
+  }
+
+  private checkEmpIsRegistered(id) {
+    return this.getRegisteredUsersName.find((reg) => reg.id === id );
   }
 
   public onVerify() {
