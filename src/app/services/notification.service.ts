@@ -35,7 +35,6 @@ export class NotificationService {
       // enableHtml: true,
       positionClass: 'toast-top-center'
     });
-
   }
 
 
