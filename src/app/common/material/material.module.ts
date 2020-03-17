@@ -3,14 +3,16 @@ import {
   MatButtonModule,
   MatAutocompleteModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
 } from '@angular/material';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 const Material = [
   MatButtonModule,
   MatAutocompleteModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  DragDropModule
 ];
 
 @NgModule({
